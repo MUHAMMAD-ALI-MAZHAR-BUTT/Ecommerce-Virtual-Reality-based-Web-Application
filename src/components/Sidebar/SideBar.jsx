@@ -1,89 +1,89 @@
 import { NavLink } from "react-router-dom";
-import { FaBars, FaHome, FaLock, FaMoneyBill, FaUser } from "react-icons/fa";
-import { MdMessage } from "react-icons/md";
-import { BiAnalyse, BiSearch } from "react-icons/bi";
-import { BiCog } from "react-icons/bi";
-import { AiFillHeart, AiTwotoneFileExclamation } from "react-icons/ai";
-import { BsCartCheck } from "react-icons/bs";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
+import HeadNavBar from "../HeadNavbar/HeadNavBar.js"
 const routes = [
   {
     path: "/",
     name: "Dashboard",
-    icon: <FaHome />,
+    icon: "fa-solid fa-house",
   },
   {
-    path: "/users",
+    path: "/Users",
     name: "Users",
-    icon: <FaUser />,
+    icon: "fa-solid fa-users",
   },
   {
-    path: "/messages",
-    name: "Messages",
-    icon: <MdMessage />,
+    path: "/Products",
+    name: "Products",
+    icon: "fa-sharp fa-solid fa-shop",
   },
   {
-    path: "/analytics",
+    path: "/Analytics",
     name: "Analytics",
-    icon: <BiAnalyse />,
+    icon: "fa-solid fa-chart-line",
   },
   {
-    path: "/file-manager",
-    name: "File Manager",
-    icon: <AiTwotoneFileExclamation />,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
-      },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
-    ],
+    path: "/UserHistories",
+    name: "History",
+    icon: "fa-solid fa-clock-rotate-left",
+    // subRoutes: [
+    //   {
+    //     path: "/settings/profile",
+    //     name: "Profile ",
+    //     icon: <FaUser />,
+    //   },
+    //   {
+    //     path: "/settings/2fa",
+    //     name: "2FA",
+    //     icon: <FaLock />,
+    //   },
+    //   {
+    //     path: "/settings/billing",
+    //     name: "Billing",
+    //     icon: <FaMoneyBill />,
+    //   },
+    // ],
   },
   {
-    path: "/order",
-    name: "Order",
-    icon: <BsCartCheck />,
+    path: "/UserOrders",
+    name: "User Orders",
+    icon: "fa-solid fa-shop",
   },
   {
-    path: "/settings",
-    name: "Settings",
-    icon: <BiCog />,
-    exact: true,
-    subRoutes: [
-      {
-        path: "/settings/profile",
-        name: "Profile ",
-        icon: <FaUser />,
-      },
-      {
-        path: "/settings/2fa",
-        name: "2FA",
-        icon: <FaLock />,
-      },
-      {
-        path: "/settings/billing",
-        name: "Billing",
-        icon: <FaMoneyBill />,
-      },
-    ],
+    path: "/UserFeedbacks",
+    name: "User Feedbacks",
+    icon: "fa-solid fa-comments",
+    // exact: true,
+    // subRoutes: [
+    //   {
+    //     path: "/settings/profile",
+    //     name: "Profile ",
+    //     icon: <FaUser />,
+    //   },
+    //   {
+    //     path: "/settings/2fa",
+    //     name: "2FA",
+    //     icon: <FaLock />,
+    //   },
+    //   {
+    //     path: "/settings/billing",
+    //     name: "Billing",
+    //     icon: <FaMoneyBill />,
+    //   },
+    // ],
   },
   {
-    path: "/saved",
-    name: "Saved",
-    icon: <AiFillHeart />,
+    path: "/ProfileSetting",
+    name: "Profile Setting",
+    icon: "fa-sharp fa-solid fa-gears",
   },
+  {
+    path: "",
+    name: "Log Out",
+    icon: "fa-solid fa-right-from-bracket",
+  }
 ];
 
 const SideBar = ({ children }) => {
@@ -128,7 +128,7 @@ const SideBar = ({ children }) => {
       <div className="main-container">
         <motion.div
           animate={{
-            width: isOpen ? "200px" : "45px",
+            width: isOpen ? "240px" : "45px",
 
             transition: {
               duration: 0.5,
@@ -148,31 +148,14 @@ const SideBar = ({ children }) => {
                   exit="hidden"
                   className="logo"
                 >
-                  DoSomeCoding
+                  MetaMart
                 </motion.h1>
               )}
             </AnimatePresence>
 
             <div className="bars">
-              <FaBars onClick={toggle} />
+            <i  className="fa-solid fa-bars Menu-Bars "  onClick={toggle}></i>
             </div>
-          </div>
-          <div className="search">
-            <div className="search_icon">
-              <BiSearch />
-            </div>
-            <AnimatePresence>
-              {isOpen && (
-                <motion.input
-                  initial="hidden"
-                  animate="show"
-                  exit="hidden"
-                  variants={inputAnimation}
-                  type="text"
-                  placeholder="Search"
-                />
-              )}
-            </AnimatePresence>
           </div>
           <section className="routes">
             {routes.map((route, index) => {
@@ -194,7 +177,8 @@ const SideBar = ({ children }) => {
                   className="link"
                   activeClassName="active"
                 >
-                  <div className="icon">{route.icon}</div>
+                  {/* <div className="icon">{route.icon}</div> */}
+                  <i className={`SideBar-Icons ${route.icon}`}></i>
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
@@ -214,7 +198,12 @@ const SideBar = ({ children }) => {
           </section>
         </motion.div>
 
-        <main>{children}</main>
+        <main>
+          <motion.div className="container-fluid ">
+     <HeadNavBar/>
+          </motion.div>
+          {children}
+          </main>
       </div>
     </>
   );
