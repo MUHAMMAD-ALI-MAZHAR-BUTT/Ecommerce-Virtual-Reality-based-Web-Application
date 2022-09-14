@@ -21,7 +21,7 @@ function App() {
           <Route exact  path="/UserHistories" element={<UserHistories />} />
           <Route exact path="/UserOrders" element={<UserOrders />} />
           <Route exact path="/UserFeedbacks" element={<UserFeedbacks/>} />
-          <Route exact path="/ProfileSettings" element={<ProfileSetting />} />
+          <Route exact path="/ProfileSetting" element={<ProfileSetting />} />
 
           <Route path="*" element={<> not found</>} />
         </Routes>
