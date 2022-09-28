@@ -1,0 +1,19 @@
+.carousel{
+    height: 100%;
+}
+.Carousel-Image{
+    border-radius: 20px 0px 0px 20px;
+    height: 100%;
+}
+.b{
+    border:5px solid rgb(0, 81, 255);
+}
+.carousel-inner,.carousel-item{
+    height: 100%;
+}
+@media screen and (min-width: 480px) {
+    .Carousel-Image{
+        border-radius: 20px 20px 0px 0px;
+        height: 100%;
+    }
+  }
