@@ -1,0 +1,66 @@
+.a{
+    border:1px solid red;
+}
+.b{
+    border:1px solid green
+}
+.Body-Section{
+   
+}
+.field-Icon{
+    width:50px;
+    text-align: center;
+    font-size: 25px;
+    color:white;
+    background-color: rgb(0, 7, 61);
+    border-radius:5px 0px 0px 5px;
+}
+.Status
+{
+    text-align: center;
+    background-color: white;
+    border-radius: 0px 5px 5px 0px;
+    border: 1px solid rgb(0, 7, 61);
+    border-left: none;
+}
+.UserName,.confirmPassword,.OldPassword{
+    border: 1px solid rgb(0, 7, 61);
+    border-radius:0px;
+    border-right: none;
+}
+.NewPassword{
+    border: 1px solid rgb(0, 7, 61);
+    border-radius:0px 5px 5px 0px;
+}
+.form-inputs{
+    /* padding-top:8px; */
+}
+#InputEmail1{
+    background: white !important;
+    color:black !important;
+}
+.EmailWarning{
+    color:black;
+    opacity: 0.7;
+}
+.TooglePassword
+{
+font-size: 15px;
+}
+
+.submitButton{
+    width:110px;
+    font-size: 17px;
+    border-radius: 5px;
+    background-color: rgb(0, 7, 61);
+    color: white;
+}
+.resetButton
+{
+    background-color: rgb(0, 7, 61);
+    color: white;
+    font-size: 19px;
+    width:110px;    
+    border-radius: 5px;
+    height: 44px;;
+}
