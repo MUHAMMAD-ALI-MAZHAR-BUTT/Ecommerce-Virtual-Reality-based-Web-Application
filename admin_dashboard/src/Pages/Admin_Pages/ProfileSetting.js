@@ -70,7 +70,7 @@ placeholder='ali123@gmail.com'  disabled />
   <span className="Label">Enter Old Password : </span>
   <div className='form-inputs d-flex '>
   <i className='fa fa-key field-Icon pt-2 '></i>
-  <input type="password" class="form-control OldPassword" id="OldInputPassword" 
+  <input type="password" class="form-control OldPassword" id="OldInputPassword" required
 placeholder='Enter Old Password' name="OldPassword"/>
 <div className="Status px-sm-3 pt-1" style={{color: `${StatusColor}`}}>{Status_UserName_Message}</div>
   </div>
@@ -78,7 +78,7 @@ placeholder='Enter Old Password' name="OldPassword"/>
 <div>  <span className="Label">Enter New Password</span></div>
   <div className='form-inputs d-flex '>
   <i className='fa fa-key field-Icon pt-2 '></i>
-  <input type="password" class="form-control NewPassword" id="NewInputPassword" 
+  <input type="password" class="form-control NewPassword" id="NewInputPassword" required
 placeholder='Enter New Password' name="NewPassword" />
   </div>
   <input type="checkbox" onClick={()=>myFunction("NewInputPassword")} /><span className="ms-2 TooglePassword">Show Password</span>
@@ -86,7 +86,7 @@ placeholder='Enter New Password' name="NewPassword" />
  <div> <span className="Label">Re-enter New Password</span></div>
   <div className='form-inputs d-flex '>
   <i className='fa fa-key field-Icon pt-2 '></i>
-  <input type="password" class="form-control confirmPassword" id="ConfirmInputPassword" name="ConfirmPassword" onChange={CheckPassword}
+  <input type="password" class="form-control confirmPassword" required id="ConfirmInputPassword" name="ConfirmPassword" onChange={CheckPassword}
 placeholder='Re-enter New Password'/>
 <div className="Status px-sm-3 pt-1" style={{color: `${CheckPasswordColor}`}}>
 <i class={`${Status_MatchPassword_Message}`}></i>
