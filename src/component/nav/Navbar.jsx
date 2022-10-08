@@ -29,12 +29,12 @@ const Navbar = () => {
         <>
             <nav className="navbar navbar-expand-lg bg-light sticky-top shadow" style={navStyle}>
                 <div className="container-fluid py-1">
-                    <NavLink exact="true" className="h2 fw-bold ms-1 mb-0" to="/" style={navLinkStyle}>MetaMart</NavLink>
+                    <NavLink exact="true" className="h2 fw-bold ms-1 mb-0" to="/check" style={navLinkStyle}>MetaMart</NavLink>
 
                     <div className="input-group w-50 pe-5" style={{ display: 'inline-block' }}>
                         <div className="form-outline d-flex" >
                             <input type="search" placeholder="search" id="form1" className="form-control w-75 mx-auto me-0 shadow-sm" style={{ borderRadius: 'unset', border: '1px solid rgb(255,106,0)' }} />
-                            <Button variant="contained" style={{backgroundColor: 'rgb(255,106,0)', borderRadius: 'unset'}}><SearchIcon /></Button>
+                            <Button variant="contained" style={{backgroundColor: 'rgb(255,106,0)', borderRadius: 'unset'}} onClick><SearchIcon /></Button>
 
                         </div>
 

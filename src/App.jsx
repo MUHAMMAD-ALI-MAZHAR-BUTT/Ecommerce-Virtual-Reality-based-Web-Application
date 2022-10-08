@@ -6,7 +6,7 @@ import Navbar from "./component/nav/Navbar";
 import Footer from "./component/footer/Footer";
 import Home from "./component/home/Home";
 import Detail from "./component/prodDetail/detail";
-
+import Check from "./component/Unity/Check";
 
 const App = () => {
     return (
@@ -17,11 +17,14 @@ const App = () => {
                     <Routes>
                         <Route exact="true" path="/" element={<Home />} />
                         <Route exact path="/detail" element={<Detail />} />
+                        <Route exact path="/check" element={<Check />} />
+
                     </Routes>
                     <Footer />
                 </div>
             </BrowserRouter>
         </>
+       
     );
 }
 
