@@ -4,6 +4,10 @@ import './Detail.css';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import img from '../../asset/img/1.jpg';
+import Navbar from "../nav/Navbar";
+import Footer from "../footer/Footer";
+
+
 
 const favStyle = {
     display: 'inline-block',
@@ -14,6 +18,7 @@ const Detail = () => {
 
     return (
         <>
+        <Navbar/>
             <div className="row p-0 m-0">
                 <div className="Prodheading my-4 text-center mx-auto">
                     <p className="h1 shadow mx-auto  p-4 my-0" style={{ fontFamily: 'Monoton, cursive', color: 'rgb(255,106,0)', fontWeight: '500' }}>Product Details</p>
@@ -54,6 +59,7 @@ const Detail = () => {
                 </div>
 
             </div>
+            <Footer/>
         </>
     )
 };
