@@ -19,7 +19,7 @@
 }
 .SideNavbar{
     background-color:rgb(0, 7, 61);
-    height: 100vh;
+    /* height: 100vh; */
 }
 .SideBarItems{
   transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);

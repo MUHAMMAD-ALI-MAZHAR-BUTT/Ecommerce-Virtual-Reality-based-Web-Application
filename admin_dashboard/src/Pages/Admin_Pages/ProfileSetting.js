@@ -21,6 +21,10 @@ export default function ProfileSetting() {
   }
   function ValidateUserName(e)
   {
+    if(e.target.value.trim()===''){
+      Status_User_Name_Message("");
+      return;
+    }
     if(/^[a-zA-Z\s.,]+$/.test(e.target.value)===false)
     {
       Status_User_Name_Message("Invalid");
@@ -72,7 +76,7 @@ placeholder='ali123@gmail.com'  disabled />
   <i className='fa fa-key field-Icon pt-2 '></i>
   <input type="password" class="form-control OldPassword" id="OldInputPassword" required
 placeholder='Enter Old Password' name="OldPassword"/>
-<div className="Status px-sm-3 pt-1" style={{color: `${StatusColor}`}}>{Status_UserName_Message}</div>
+<div className="Status px-sm-3 pt-1" style={{color: `${StatusColor}`}}></div>
   </div>
   <input type="checkbox" onClick={()=>myFunction("OldInputPassword")} /><span className="ms-2 TooglePassword">Show Password</span>
 <div>  <span className="Label">Enter New Password</span></div>

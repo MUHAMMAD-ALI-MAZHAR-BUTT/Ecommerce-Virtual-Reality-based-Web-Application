@@ -4,3 +4,31 @@
 .b{
     border:1px solid blue;
 }
+.HeadingOfPage{
+    color: black;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 25px;;
+}
+.Price{
+    width: 200px;;
+}
+.UploadImageButton{
+    margin-top: 5px;;
+    background-color: blue;
+    color:white;
+    width: 140px;
+    font-size: large;
+    height: 45px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+}
+
+.submitbutton{
+background-color: blue;
+color:white
+}
+.resetbutton{
+    background-color: blue;
+    color:white
+    }

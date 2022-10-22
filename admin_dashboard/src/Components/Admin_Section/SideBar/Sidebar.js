@@ -1,6 +1,6 @@
 import React from 'react'
 import {motion} from "framer-motion"
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import SidebarData from "./SidebarData"
 import Header from '../Header/Header';
 import "../../../styles/Admin_Section/SideBar/Sidebar.css"
@@ -20,7 +20,7 @@ const Sidebar=({children})=>{
 
     return(
         <>    
-          <div className='d-flex flex-row bd-highlight '>
+          <div className='d-flex flex-row bd-highlight'>
             <motion.div className='SideNavbar  p-0 bd-highlight' animate={{width:isOpenToogle?"290px":"60px",
          transition: {
             duration: 0.5,
@@ -40,10 +40,11 @@ const Sidebar=({children})=>{
   if(item.subRoutes){
     return (<SidebarMenuSubRoutes item={item} isOpenToogle={isOpenToogle} key={item.name}/>);
   }
-             return   <NavLink to={item.path} className="SideBarItems  d-flex flex-row "  key={index}>
+             return   <NavLink to={item.path}  className="SideBarItems  d-flex flex-row "  key={index}>
                     <i className={`${item.Icon} SideBarItemsIcons ms-2 ms-sm-3 my-2 `}></i>
             {isOpenToogle && <h6 className="SideBarItemsText ms-1 ms-sm-3 my-2  ">{item.name}</h6>}
                 </NavLink> })}
+            
 </div>
             </motion.div>
             <motion.div className='BodySection bd-highlight '>
@@ -58,6 +59,7 @@ const Sidebar=({children})=>{
         
          </motion.div>
           </div>
+          
 </>
     );
 }
