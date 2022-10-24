@@ -19,9 +19,17 @@ const Sidebar=({children})=>{
     }
 
     return(
-        <>    
-          <div className='d-flex flex-row bd-highlight'>
-            <motion.div className='SideNavbar  p-0 bd-highlight' animate={{width:isOpenToogle?"290px":"60px",
+        <>   
+         
+          <div className='d-flex flex-row bd-highlight '>
+   <motion.div className='SideNavbarBack  p-0 bd-highlight' animate={{width:isOpenToogle?"230px":"60px",
+         transition: {
+            duration: 0.5,
+            type: "spring",
+            damping: 10,
+          },}}>
+            </motion.div>
+            <motion.div className='SideNavbar  p-0 bd-highlight' animate={{width:isOpenToogle?"230px":"60px",
          transition: {
             duration: 0.5,
             type: "spring",
@@ -49,7 +57,8 @@ const Sidebar=({children})=>{
             </motion.div>
             <motion.div className='BodySection bd-highlight '>
                 <div className="container-fluid">
-             <div className="row Header">
+               
+             <div className="row Header ps-sm-5 ">
 <Header/>
              </div>
 <div className="row mainSection">

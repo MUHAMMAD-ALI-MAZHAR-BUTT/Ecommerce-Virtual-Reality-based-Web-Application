@@ -54,6 +54,7 @@ export default function Home() {
   <Route path="ProductFeedback" element={<ProductFeedback/>}/>
 </Route>
 <Route path="/ProfileSetting" element={<ProfileSetting/>}/>
+<Route path="*" element={<h1>404 Page</h1>}/>
   </Routes>
   </Sidebar>
 </BrowserRouter>

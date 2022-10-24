@@ -6,8 +6,13 @@
     border:11px solid rgb(0, 81, 255);
 }
 .BackGround{
-    background-color: rgb(1, 29, 53);;
-   height: 100vh;
+    /* background-color: rgb(1, 29, 53);; */
+    background-image: url('../../../public/Images/SignIn/BackgroundImage.jpg');
+    
+  /* Full height */
+  height: 100vh;
+
+
 }
 .SignInBox{
     border:1px solid grey;

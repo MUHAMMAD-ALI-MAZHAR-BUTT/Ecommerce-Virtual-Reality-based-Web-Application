@@ -33,7 +33,8 @@ export default function AddProducts() {
   }
   return (
     <>
-      <div className="container-fluid  a" style={{backgroundColor:'yellow'}}>
+      {/* <div className="container-fluid" style={{backgroundColor:'yellow'}}> */}
+      <div className="container-fluid" >
         <div className='row mt-3'><h3 className=' d-flex justify-content-center HeadingOfPage'>Add Products</h3></div>
         <form>
           <div className="row mx-sm-5">

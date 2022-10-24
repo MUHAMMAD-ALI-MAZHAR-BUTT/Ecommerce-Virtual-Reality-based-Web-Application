@@ -5,8 +5,10 @@
 .Admin-Inputs{
     width: fit-content;
 }
-.Heading{
-    align-self: center;
+.SignInHeading{
+    font-family:'Times New Roman', Times, serif;
+    font-weight: lighter;
+    font-style: italic;
 }
 .ForgetPassword{
 

@@ -27,16 +27,15 @@ export default function SignInSection() {
   {
     SetUser({...user,[name]:value});
   }
-  console.log(user)
   return (
     <>
     
     <div className="container-fluid ">
       <div className='row'>
         <div className='col pt-md-4 d-flex justify-content-center'>
-<div className="row w-100 mb-md-5 my-0">
+<div className="row w-100 mb-md-5 my-0 ">
 <div className="inner-section d-flex flex-column ">
-          <h1 className='pt-md-4 pt-1 Heading'> Sign In</h1>
+<h1 className="text-center SignInHeading "> Sign In</h1>
           <div className="mb-md-1 mb-1 mt-md-5">
   <label className="form-label">Enter your Email address</label>
   <input type="email" className="form-control shadow-none"  placeholder="name@example.com"  id="message"
