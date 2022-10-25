@@ -53,9 +53,15 @@
    
 }
 .mainSection{
-    height: 94vh;;
+    height: 100%;
 }
 .Header{
     height: 51px;
     background-color:rgb(0, 7, 61);
+}
+.Open{
+    margin-left: 228px;
+}
+.Close{
+    margin-left: 58px;;
 }

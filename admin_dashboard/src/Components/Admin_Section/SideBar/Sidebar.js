@@ -1,6 +1,6 @@
 import React from 'react'
 import {motion} from "framer-motion"
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SidebarData from "./SidebarData"
 import Header from '../Header/Header';
 import "../../../styles/Admin_Section/SideBar/Sidebar.css"
@@ -57,8 +57,10 @@ const Sidebar=({children})=>{
             </motion.div>
             <motion.div className='BodySection bd-highlight '>
                 <div className="container-fluid">
-               
-             <div className="row Header ps-sm-5 ">
+             <div className="row Header">
+
+             </div>
+             <div className={`row Header ps-sm-5 fixed-top  ${isOpenToogle?'Open':'Close'}`} >
 <Header/>
              </div>
 <div className="row mainSection">
