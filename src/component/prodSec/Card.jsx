@@ -1,5 +1,6 @@
 import React from "react";
-import img from "../../asset/img/1.jpg";
+
+
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./Prod.css";
 import { NavLink } from "react-router-dom";
@@ -14,7 +15,7 @@ const TitleStyle = {
   fontWeight: "700",
 };
 
-const Card = () => {
+const Card = (props) => {
   return (
     <>
       <div
@@ -22,7 +23,7 @@ const Card = () => {
         style={{ width: "75%", fontFamily: "Merriweather, serif" }}
       >
         <img
-          src={img}
+          src={props.img}
           className="card-img-top img-fluid my-1 p-3"
           style={{ height: "200px" }}
           alt="..."
