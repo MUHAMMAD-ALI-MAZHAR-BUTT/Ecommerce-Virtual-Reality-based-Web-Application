@@ -16,13 +16,13 @@ const ProdSec = () => {
                     <hr className="fw-bold w-75 " style={{ display: 'inline-block' }} />
                 </div>
                 <div className="col-md-4 col-sm-6 col-12">
-                    <Card img={img1} />
+                    <Card img={img1} title="Leather jacket"/>
                 </div>
                 <div className="col-md-4 col-sm-6 col-12">
-                    <Card img={img2}/>
+                    <Card img={img2} title="Sweat shirt"/>
                 </div>
                 <div className="col-md-4 col-sm-6 col-12">
-                    <Card img={img3}/>
+                    <Card img={img3} title="Puffer jacket"/>
                 </div>
                 <div className="text-center mt-3">
                     <Button variant="outlined " className="my-3 ">Show More <KeyboardArrowRightIcon /> </Button>

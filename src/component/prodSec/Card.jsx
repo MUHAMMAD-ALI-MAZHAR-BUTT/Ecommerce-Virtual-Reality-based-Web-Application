@@ -30,7 +30,7 @@ const Card = (props) => {
         />
         <div className="card-body text-center">
           <h3 className="card-title " style={TitleStyle}>
-            Product Title
+            {props.title}
           </h3>
           <hr className="w-75 mx-auto my-0" />
           <div className="card-text py-2">
@@ -49,7 +49,7 @@ const Card = (props) => {
             }}
           >
             {" "}
-            Product Details{" "}
+            Details{" "}
           </NavLink>
         </div>
       </div>
