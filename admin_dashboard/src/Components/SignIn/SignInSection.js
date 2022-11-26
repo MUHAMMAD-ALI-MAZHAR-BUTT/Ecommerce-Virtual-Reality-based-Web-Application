@@ -1,7 +1,10 @@
 import React from 'react'
 import "../../styles/SignIn/SignInSection.css"
 import { useState } from 'react';
+import { Navigate,useNavigate } from 'react-router-dom';
+import axios from 'axios';
 export default function SignInSection() {
+
   const [error, setError] = useState(null);
   const [typePassword,SetPasswordType]=useState("password");
   const [user,SetUser]=useState({
@@ -26,6 +29,29 @@ export default function SignInSection() {
   function Assignment(name,value)
   {
     SetUser({...user,[name]:value});
+   
+  }
+  const handleSubmit=async(e)=>{
+   e.preventDefault();
+  
+   try{
+    const url="http://localhost:8080/api/auth";
+   
+    const{data:res}=await axios.post(url,user);
+    localStorage.setItem("token",res.data);
+    window.location="/Dashboard";
+    console.log(res.message);
+   }
+   catch(error)
+   {
+    if(error.response && 
+      error.response.status >= 400 &&
+      error.response.status <= 500
+      )
+      {
+        setError(error.response.data.message);
+      }
+   }
   }
   return (
     <>
@@ -36,16 +62,18 @@ export default function SignInSection() {
 <div className="row w-100 mb-md-5 my-0 ">
 <div className="inner-section d-flex flex-column ">
 <h1 className="text-center SignInHeading "> Sign In</h1>
+<form onSubmit={handleSubmit }>
           <div className="mb-md-1 mb-1 mt-md-5">
+           
   <label className="form-label">Enter your Email address</label>
   <input type="email" className="form-control shadow-none"  placeholder="name@example.com"  id="message"
-        name="email"
+        name="email" required
         onChange={handleChange} />
  <div className='ms-2 mt-1'> {error && <span style={{color: 'red'}}>{error}</span>}</div>
 </div>
 <div className="mb-md-4 mb-1 mt-md-2">
   <label className="form-label">Enter your Password</label>
-  <input type={typePassword} name="password" className="form-control shadow-none"  placeholder="●●●●●●●●●●●" id="myInput"
+  <input type={typePassword} name="password" required className="form-control shadow-none"  placeholder="●●●●●●●●●●●" id="myInput"
   onChange={(e)=>Assignment(e.target.name,e.target.value)}
   />
 </div>
@@ -53,7 +81,8 @@ export default function SignInSection() {
 <input type="checkbox" onClick={myFunction}/>Show Password
 </div>
 
-          <button type="submit " className="btn btn-primary mb-1">Sign In</button>
+          <button type="submit " className="btn btn-primary mb-1" >Sign In</button>
+          </form> 
          </div>
 </div>
           </div>

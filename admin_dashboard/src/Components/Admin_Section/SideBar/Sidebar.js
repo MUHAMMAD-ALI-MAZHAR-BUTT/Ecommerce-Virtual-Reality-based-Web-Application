@@ -6,6 +6,11 @@ import Header from '../Header/Header';
 import "../../../styles/Admin_Section/SideBar/Sidebar.css"
 import { useState ,useEffect} from 'react';
 import SidebarMenuSubRoutes from './SidebarMenuSubRoutes';
+const LogOut=()=>{ 
+  localStorage.removeItem("token");
+ window.location("/login")
+  alert("Log out");
+}
 const Sidebar=({children})=>{
     useEffect(() => {
         window
@@ -37,7 +42,7 @@ const Sidebar=({children})=>{
           },}}>
                 <div className='SideBarBannerSection Section1 d-flex flex-row '> 
                 <i className="fas fa-user-cowboy"></i>
-                  {isOpenToogle &&  <h6 className='BannerTitle ms-4'>Metaverse Mart</h6>}
+                  {isOpenToogle &&  <h6 className='BannerTitle ms-4'>MetaMart</h6>}
                     <i className='ToogleButton fa-solid fa-bars pt-3 ms-md-3 ms-2'
                     onClick={ToogleFunction}
                     ></i>
@@ -48,7 +53,15 @@ const Sidebar=({children})=>{
   if(item.subRoutes){
     return (<SidebarMenuSubRoutes item={item} isOpenToogle={isOpenToogle} key={item.name}/>);
   }
-             return   <NavLink to={item.path}  className="SideBarItems  d-flex flex-row "  key={index}>
+             return   <NavLink to={item.path}  className="SideBarItems  d-flex flex-row " 
+             onClick={()=>{
+              if(item.name==='Log Out'){
+                return LogOut();
+              }else{
+                return;
+              }
+             }}
+               key={index}>
                     <i className={`${item.Icon} SideBarItemsIcons ms-2 ms-sm-3 my-2 `}></i>
             {isOpenToogle && <h6 className="SideBarItemsText ms-1 ms-sm-3 my-2  ">{item.name}</h6>}
                 </NavLink> })}

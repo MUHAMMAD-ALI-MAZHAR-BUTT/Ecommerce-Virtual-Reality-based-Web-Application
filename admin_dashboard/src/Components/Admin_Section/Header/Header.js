@@ -10,7 +10,7 @@ function ChangeMode()
 
   return (
     <>
-      <div className="col-8 ps-md-3 pt-1 Heading">Welcome to Metaverse Mart Dashboard</div>
+      <div className="col-8 ps-md-3 pt-1 Heading">Welcome to MetaMart Dashboard</div>
   <div className='col-4  pt-2 d-flex flex-row justify-content-end'>
     <div className="Mode me-md-1" >
     <i className={`${Mode}  Items`} onClick={ChangeMode}></i>

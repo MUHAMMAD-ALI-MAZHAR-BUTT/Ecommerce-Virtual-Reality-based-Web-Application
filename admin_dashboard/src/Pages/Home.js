@@ -1,5 +1,6 @@
 import React from 'react'
-import {BrowserRouter,Route,Routes} from "react-router-dom"
+import {BrowserRouter,Route,Routes,Navigate} from "react-router-dom"
+import SignIn from '../Components/SignIn/SignIn';
 import Sidebar from "../Components/Admin_Section/SideBar/Sidebar"
 import Analytics from "./Admin_Pages/Analytics/Analytics"
 import GeneralAnalytics from "./Admin_Pages/Analytics/GeneralAnalytics"
@@ -24,9 +25,10 @@ import ProductRequests from "./Admin_Pages/ProductRequests"
 import ViewProduct from "./Admin_Pages/ViewProducts"
 import "../styles/Home.css"
 export default function Home() {
+  const user=localStorage.getItem("token");
   return (
 <BrowserRouter>
-<Sidebar>
+{user && <Sidebar>
   <Routes>
   <Route path="/Dashboard" element={<Dashboard/>}/>
 <Route path="/Products/" element={<Products/>}>
@@ -56,7 +58,14 @@ export default function Home() {
 <Route path="/ProfileSetting" element={<ProfileSetting/>}/>
 <Route path="*" element={<h1>404 Page</h1>}/>
   </Routes>
-  </Sidebar>
+  </Sidebar>}
+  <Routes>
+    {user &&  <Route path="/" element={<Dashboard/>}/>}
+    {!user &&  <Route path="/" element={<SignIn/>}/>}
+    <Route path="/login" exact element={ <SignIn/>} />
+    
+   </Routes>
+  
 </BrowserRouter>
   )
 }
