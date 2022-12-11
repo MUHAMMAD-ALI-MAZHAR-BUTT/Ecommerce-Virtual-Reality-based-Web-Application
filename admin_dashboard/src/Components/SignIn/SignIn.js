@@ -7,7 +7,7 @@ export default function SignIn() {
    <>
     <div className="container-fluid BackGround ">
         <div className="row ">
-            <div className="col-10 mt-5 a offset-1 SignInBox ">
+            <div className="col-10 mt-5 offset-1 SignInBox ">
               <div className="row Inner-Section">
                 <div className="col-md-6 LeftSection p-0">
                 <CarouselContent/>

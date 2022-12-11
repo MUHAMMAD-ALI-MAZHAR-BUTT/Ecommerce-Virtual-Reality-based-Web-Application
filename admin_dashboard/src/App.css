@@ -3,3 +3,38 @@
     margin: 0;
     padding: 0;
 }
+.light-Mode{
+    --Header-Color:rgb(0, 7, 61);
+    --Sidebar-Color:rgb(0, 7, 61);
+    --DropDown-Border-Color:rgb(0, 7, 61);
+    --ItemsColor:rgb(255, 255, 255);
+    --BodySectionColor:rgb(224, 224, 224);
+    --FormFieldColor:white;
+}
+.Dark-Mode{
+    --Header-Color:black;
+    --Sidebar-Color:black;
+    --DropDown-Border-Color:black;
+    --ItemsColor:rgb(254,206,0);
+    --BodySectionColor:rgb(199, 199, 199);
+    --FormFieldColor:rgb(243, 243, 243);
+}
+.SideNavbar{
+    background-color:var(--Sidebar-Color);
+}
+.SideBarItemsText,.SideBarItemsIcons,.Items,.Heading,.BannerTitle,.ToogleButton{
+    color: var(--ItemsColor);
+    
+}
+.Header{
+    background-color:var(--Header-Color);
+}
+.dropdown-menu{
+    border: 2px solid var(--DropDown-Border-Color);
+}
+.BodySection{
+    background-color:var(--BodySectionColor);
+}
+.form-control,#Description_Field,.GenderButton{
+    background-color:var(--FormFieldColor);
+}

@@ -31,6 +31,5 @@ const SidebarData=[
     {name:"Product Feedback",path:"/Feedbacks/ProductFeedback",Icon:"fa-solid fa-star"}]
     },
     {name:"Setting",path:"/ProfileSetting",Icon:"fa-sharp fa-solid fa-gear"},
-    {name:"Log Out",path:"/login",Icon:"fa-solid fa-right-from-bracket"},
 ]
 export default SidebarData;

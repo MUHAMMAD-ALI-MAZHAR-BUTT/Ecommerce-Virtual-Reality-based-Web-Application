@@ -1,69 +1,141 @@
-import React from 'react'
-
-import { useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import {React,useState} from 'react'
 import "../../styles/Admin_Section/AdminPages/AddProduct.css"
+import "../../App.css"
 export default function AddProducts() {
-  const [image1, set1stImage] = useState(null);
-  const [image2, set2ndImage] = useState(null);
-  const [image3, set3rdImage] = useState(null);
-  const [image4, set4thImage] = useState(null);
-  const handleChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = function () {
-        const result = reader.result;
-        if (event.target.id === "first") {
-          set1stImage(result);
-        }
-        else if (event.target.id === "second") {
-          set2ndImage(result);
-        }
-        else if (event.target.id === "third") {
-          set3rdImage(result);
-        }
-        else if (event.target.id === "fourth") {
-          set4thImage(result);
-        }
-      }
-      reader.readAsDataURL(file);
+  const [Gender,SetGender]=useState("Select Gender");
+  function Set_Gender(Argument){
+    if(Argument==="Male"){
+      SetGender("For Male")
+    }else{
+      SetGender("For Female");
     }
-
   }
   return (
     <>
-      {/* <div className="container-fluid" style={{backgroundColor:'yellow'}}> */}
       <div className="container-fluid" >
-        <div className='row mt-3'><h3 className=' d-flex justify-content-center HeadingOfPage'>Add Products</h3></div>
-        <form>
-          <div className="row mx-sm-5">
-            <div className="col">
-              <div class="mb-1">
-                <label class="form-label fw-bold">Enter Product Name</label>
-                <input type="text" class="form-control" id="ProductName" placeholder='Product Name' />
-              </div>
-              <div className=' d-flex justify-content-between '>
-                <div className='mb-1 ProductType  w-50'>
-                  <label class="form-label fw-bold">Product Type:</label>
-                  <select class="form-select" aria-label="select example">
-                    <option value="Black">Cloth</option>
-                    <option value="Brown">Bags</option>
-                    <option value="Blue">Glasses</option>
-                  </select>
-                </div>
-                <div class="mb-1 Price ">
-                  <label class="form-label fw-bold">Enter Price</label>
-                  <input type="number" class="form-control" id="ProductPrice" max={80000} />
-                </div>
-              </div>
+        <div className='row my-3'><h1 className=' text-center HeadingOfPage'>Add Products</h1></div>
+    <div className='row'>
+    <form>
+ <div className='container-fluid px-sm-5'>
+<div className='row '>
+<div className="col-sm-3 mb-3">
+<label className="form-label fw-bold">Product Name</label>
+  <input type="text" class="form-control" id="ProductName" placeholder="Enter Product Name"/>
+</div>
+<div className="col-sm-3 mb-3">
+<label className="form-label fw-bold">Product Price</label>
+  <input type="number" class="form-control" id="ProductPrice" placeholder="20$"/>
+</div>
+<div className="col-sm-3 mb-3">
+<label className="form-label fw-bold">Material Type</label>
+  <input type="text" class="form-control" placeholder="Leather"/>
+</div>
+<div className="col-sm-3 mb-3">
+<label className="form-label fw-bold">Category Name</label>
+<div className="dropdown">
+  <a className="btn GenderButton" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    {Gender}
+  </a>
 
-            </div>
-            <div className="col"> <div class="mb-1">
-              <label class="form-label fw-bold">Enter Product Description</label>
-              <input type="text" class="form-control" id="" placeholder='Product Description' />
-            </div>
-              <div className='mb-1'>
+  <ul className="dropdown-menu GenderMenu" aria-labelledby="dropdownMenuLink">
+    <li><div className="dropdown-item " onClick={()=>Set_Gender("Male")}>For Male</div></li>
+    <li><div className="dropdown-item" onClick={()=>Set_Gender("Female")}>For Female</div></li>
+  </ul>
+</div>
+</div>
+</div>
+<div className='row '>
+<div class="mb-3 w-100">
+<label className="form-label fw-bold">Product Description</label>
+  <textarea  id="Description_Field" className='w-100 DescriptionField' rows="5" cols="5"></textarea>
+</div>
+</div>
+<div className="row">
+<h6 className='fw-bold'>Available Pieces</h6>
+</div>
+<div className='row'>
+<div className="w-25">
+  <div className=''>
+  <label className="form-label fw-bold">Small</label>
+  </div>
+<div className="mb-3">
+  <input type="number" class="form-control"  placeholder="20"/>
+</div>
+</div>
+<div className="w-25">
+  <div className=''>
+  <label className="form-label fw-bold">Medium</label>
+  </div>
+<div className="mb-3">
+  <input type="number" class="form-control" placeholder="20"/>
+</div>
+</div>
+<div className="w-25">
+  <div className=''>
+  <label className="form-label fw-bold">Large</label>
+  </div>
+<div className="mb-3">
+  <input type="number" class="form-control" placeholder="20"/>
+</div>
+</div>
+<div className="w-25">
+  <div className=''>
+  <label className="form-label fw-bold">XL</label>
+  </div>
+<div className="mb-3">
+  <input type="number" class="form-control"  placeholder="20"/>
+</div>
+</div>
+</div>
+<div className="row">
+<h6 className='fw-bold'>Available Colors</h6>
+</div>
+<div className='row'>
+<div className="w-25">
+  <div className=''>
+  <label className="form-label fw-bold">Small</label>
+  </div>
+<div className="mb-3">
+  <input type="number" class="form-control"  placeholder="20"/>
+</div>
+</div>
+<div className="w-25">
+  <div className=''>
+  <label className="form-label fw-bold">Medium</label>
+  </div>
+<div className="mb-3">
+  
+</div>
+</div>
+<div className="w-25">
+  <div className=''>
+  <label className="form-label fw-bold">Large</label>
+  </div>
+<div className="mb-3">
+  <input type="number" class="form-control" placeholder="20"/>
+</div>
+</div>
+<div className="w-25">
+  <div className=''>
+  <label className="form-label fw-bold">XL</label>
+  </div>
+<div className="mb-3">
+  <input type="number" class="form-control"  placeholder="20"/>
+</div>
+</div>
+</div>
+ </div>
+
+
+ {/* End  */}
+ <div className='row d-flex justify-content-around my-5'>
+            <button type="reset" className="btn  w-25 resetbutton">Cancel</button>
+            <button type="submit" className="btn w-25  submitbutton">Add Product</button>
+ </div>
+ </form>
+
+    </div>
+         {/* <div className='mb-1'>
                 <label class="form-label fw-bold">Available Colors:</label>
                 <select class="form-select" aria-label="multiple select example">
                   <option value="Black">Black</option>
@@ -117,116 +189,12 @@ export default function AddProducts() {
               </div>
             </div>
           </div>
-          <div className='row mx-sm-5 '>
-            <div className='col-2'>
-              <b>2D Images</b>
-            </div>
-            <div className='col'>
-              <div className='row'>
-                <div className='col d-flex flex-column  p-0'>
-                  <b className='text-center'>Small</b>
-                  <div className='container-fluid p-0 ' style={{ width: '100%' }}>
-                    <div className="rectangle " style={{ width: '250px', height: '200px', border: '1px dashed grey', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                      {image1 && <img src={image1} alt="" style={{ height: '100%', width: '100%', objectFit: 'cover' }} />}
-                      {!image1 && <><span class="bi bi-upload fa-5x blue-color"></span><p>No image to display</p></>}
-                    </div>
-                    <div className="buttonArea " style={{ display: 'flex' }}>
-                      <input class="form-control" type="file" style={{ display: 'none' }} hidden id='imageUploader' onChange={handleChange} />
-                      <button type="file" className=' UploadImageButton mx-auto' id="first" onClick={(event) => { event.preventDefault(); document.getElementById('imageUploader').click(); }}><span class="bi bi-upload blue-color"></span> upload</button>
-                    </div>
-                  </div>
-                </div>
-                <div className='col d-flex flex-column'>
-                  <b className='text-center'>Medium</b>
-                  <div className='container p-0 ' style={{ width: '100%' }}>
-                    <div className="rectangle " style={{ width: '250px', height: '200px', border: '1px dashed grey', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                      {image2 && <img src={image2} alt="" style={{ height: '100%', width: '100%', objectFit: 'cover' }} />}
-                      {!image2 && <><span class="bi bi-upload fa-5x blue-color"></span><p>No image to display</p></>}
-                    </div>
-                    <div className="buttonArea " style={{ display: 'flex' }}>
-                      <input class="form-control" type="file" style={{ display: 'none' }} hidden id='imageUploader' onChange={handleChange} />
-                      <button type="file" className='btn UploadImageButton mx-auto' id="second" onClick={(event) => { event.preventDefault(); document.getElementById('imageUploader').click(); }}><span class="bi bi-upload blue-color"></span> upload</button>
-                    </div>
-                  </div>
-                </div>
-                <div className='col d-flex flex-column'>
-                  <b className='text-center'>Large</b>
-                  <div className='container p-0 ' style={{ width: '100%' }}>
-                    <div className="rectangle " style={{ width: '250px', height: '200px', border: '1px dashed grey', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                      {image3 && <img src={image3} alt="" style={{ height: '100%', width: '100%', objectFit: 'cover' }} />}
-                      {!image3 && <><span class="bi bi-upload fa-5x blue-color"></span><p>No image to display</p></>}
-                    </div>
-                    <div className="buttonArea " style={{ display: 'flex' }}>
-                      <input class="form-control" type="file" style={{ display: 'none' }} hidden id='imageUploader' onChange={handleChange} />
-                      <button type="file" className='btn UploadImageButton mx-auto' id="third" onClick={(event) => { event.preventDefault(); document.getElementById('imageUploader').click(); }}><span class="bi bi-upload blue-color"></span> upload</button>
-                    </div>
-                  </div>
-                </div>
-                <div className='col  d-flex flex-column'>
-                  <b className='text-center'>XL</b>
-                  <div className='container' style={{ width: '100%' }}>
-                    <div className="rectangle " style={{ width: '250px', height: '200px', border: '1px dashed grey', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                      {image4 && <img src={image4} alt="" style={{ height: '100%', width: '100%', objectFit: 'cover' }} />}
-                      {!image4 && <><span class="bi bi-upload fa-5x blue-color"></span><p>No image to display</p></>}
-                    </div>
-                    <div className="buttonArea " style={{ display: 'flex' }}>
-                      <input class="form-control" type="file" style={{ display: 'none' }} hidden id='imageUploader' onChange={handleChange} />
-                      <button type="file" className='btn UploadImageButton mx-auto' id="fourth" onClick={(event) => { event.preventDefault(); document.getElementById('imageUploader').click(); }}><span class="bi bi-upload blue-color"></span> upload</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='row mx-sm-5  '>
-            <div className='col-2'>
-              3D Images
-            </div>
-            <div className='col'>
-              <div className='row'>
-                <div className='col d-flex flex-column '>
-                  <b className='text-center'>Small</b>
-
-                </div>
-                <div className='col d-flex flex-column'>
-                  <b className='text-center'> Medium</b>
-                </div>
-                <div className='col d-flex flex-column'>
-                  <b className='text-center'>Large</b>
-                </div>
-                <div className='col d-flex flex-column'>
-                  <b className='text-center'>XL</b>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className='row mx-sm-5  '>
-            <div className='col-2'>
-              Avatars
-            </div>
-            <div className='col'>
-              <div className='row'>
-                <div className='col d-flex flex-column '>
-                  <b className='text-center'>Small</b>
-
-                </div>
-                <div className='col d-flex flex-column'>
-                  <b className='text-center'>Medium</b>
-                </div>
-                <div className='col d-flex flex-column'>
-                  <b className='text-center'>Large</b>
-                </div>
-                <div className='col d-flex flex-column'>
-                  <b className='text-center'>XL</b>
-                </div>
-              </div>
-            </div>
-          </div>
+         
           <div className="row mx-sm-5 a d-flex justify-content-between ps-sm-5 pe-sm-5">
             <button type="reset" className="btn  w-25 resetbutton">Cancel</button>
             <button type="submit" className="btn w-25  submitbutton">Add Product</button>
           </div>
-        </form>
+        </form> */}
       </div>
     </>
   )

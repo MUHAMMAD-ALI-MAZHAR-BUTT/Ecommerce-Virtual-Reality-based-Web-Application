@@ -23,6 +23,7 @@ import ProfileSetting from "./Admin_Pages/ProfileSetting"
 import Feedbacks from "./Admin_Pages/Feedbacks"
 import ProductRequests from "./Admin_Pages/ProductRequests"
 import ViewProduct from "./Admin_Pages/ViewProducts"
+import _404Page from "./Admin_Pages/404Page"
 import "../styles/Home.css"
 export default function Home() {
   const user=localStorage.getItem("token");
@@ -56,16 +57,15 @@ export default function Home() {
   <Route path="ProductFeedback" element={<ProductFeedback/>}/>
 </Route>
 <Route path="/ProfileSetting" element={<ProfileSetting/>}/>
-<Route path="*" element={<h1>404 Page</h1>}/>
+<Route path="*" element={<_404Page/>}/>
   </Routes>
   </Sidebar>}
   <Routes>
-    {user &&  <Route path="/" element={<Dashboard/>}/>}
-    {!user &&  <Route path="/" element={<SignIn/>}/>}
+    {user &&  <Route path="/" exact element={<Navigate replace to="/Dashboard" />}/>}
+    {!user &&  <Route path="/" exact element={<SignIn/>}/>}
     <Route path="/login" exact element={ <SignIn/>} />
-    
-   </Routes>
-  
+    {/* <Route path="/" exact element={<Navigate replace to="/login" />}/> */}
+    </Routes>
 </BrowserRouter>
   )
 }

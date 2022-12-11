@@ -39,7 +39,7 @@ export default function SignInSection() {
    
     const{data:res}=await axios.post(url,user);
     localStorage.setItem("token",res.data);
-    window.location="/Dashboard";
+    window.location="/";
     console.log(res.message);
    }
    catch(error)

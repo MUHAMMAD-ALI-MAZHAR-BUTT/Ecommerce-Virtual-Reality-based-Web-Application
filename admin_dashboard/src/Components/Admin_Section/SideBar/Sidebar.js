@@ -3,14 +3,10 @@ import {motion} from "framer-motion"
 import { NavLink } from 'react-router-dom';
 import SidebarData from "./SidebarData"
 import Header from '../Header/Header';
+import "../../../App.css"
 import "../../../styles/Admin_Section/SideBar/Sidebar.css"
 import { useState ,useEffect} from 'react';
 import SidebarMenuSubRoutes from './SidebarMenuSubRoutes';
-const LogOut=()=>{ 
-  localStorage.removeItem("token");
- window.location("/login")
-  alert("Log out");
-}
 const Sidebar=({children})=>{
     useEffect(() => {
         window
@@ -27,14 +23,14 @@ const Sidebar=({children})=>{
         <>   
          
           <div className='d-flex flex-row bd-highlight '>
-   <motion.div className='SideNavbarBack  p-0 bd-highlight' animate={{width:isOpenToogle?"230px":"60px",
+   <motion.div className='SideNavbarBack  p-0 bd-highlight' animate={{width:isOpenToogle?"278px":"60px",
          transition: {
             duration: 0.5,
             type: "spring",
             damping: 10,
           },}}>
             </motion.div>
-            <motion.div className='SideNavbar  p-0 bd-highlight' animate={{width:isOpenToogle?"230px":"60px",
+            <motion.div className='SideNavbar  p-0 bd-highlight' animate={{width:isOpenToogle?"232px":"60px",
          transition: {
             duration: 0.5,
             type: "spring",
@@ -53,18 +49,14 @@ const Sidebar=({children})=>{
   if(item.subRoutes){
     return (<SidebarMenuSubRoutes item={item} isOpenToogle={isOpenToogle} key={item.name}/>);
   }
-             return   <NavLink to={item.path}  className="SideBarItems  d-flex flex-row " 
-             onClick={()=>{
-              if(item.name==='Log Out'){
-                return LogOut();
-              }else{
-                return;
-              }
-             }}
+             return  <NavLink to={item.path}  className="SideBarItems  d-flex flex-row " 
                key={index}>
                     <i className={`${item.Icon} SideBarItemsIcons ms-2 ms-sm-3 my-2 `}></i>
             {isOpenToogle && <h6 className="SideBarItemsText ms-1 ms-sm-3 my-2  ">{item.name}</h6>}
-                </NavLink> })}
+                </NavLink>
+              })
+                
+                }
             
 </div>
             </motion.div>
@@ -73,7 +65,7 @@ const Sidebar=({children})=>{
              <div className="row Header">
 
              </div>
-             <div className={`row Header ps-sm-5 fixed-top  ${isOpenToogle?'Open':'Close'}`} >
+             <div className={`row Header ps-sm-2 fixed-top  ${isOpenToogle?'Open':'Close'}`} >
 <Header/>
              </div>
 <div className="row mainSection">

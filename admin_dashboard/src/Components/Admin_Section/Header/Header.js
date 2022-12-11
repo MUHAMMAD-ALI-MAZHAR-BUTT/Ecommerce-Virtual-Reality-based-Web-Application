@@ -1,19 +1,33 @@
 import React from 'react'
+import "../../../App.css"
 import "../../../styles/Admin_Section/Header/Header.css"
 import { useState ,useEffect} from 'react'
+import { useNavigate } from 'react-router-dom';
 export default function Header() {
-const[Mode,SetMode]=useState("fa-solid fa-moon")
+const[ModeIcon,SetModeIcon]=useState("fa-solid fa-moon")
+const[ThemeValue,SetThemeValue]=useState("Dark-Mode");
+const navigate=useNavigate();
+useEffect(()=>{
+  document.body.className=ThemeValue;
+})
 function ChangeMode()
 {
-    Mode==="fa-solid fa-moon"?SetMode("fa-sharp fa-solid fa-sun"):SetMode("fa-solid fa-moon");
+    ModeIcon==="fa-solid fa-moon"?SetModeIcon("fa-sharp fa-solid fa-sun"):SetModeIcon("fa-solid fa-moon");
+    ThemeValue==="Dark-Mode"?SetThemeValue("light-Mode"):SetThemeValue("Dark-Mode");
 }
-
+const LogOut=()=>{ 
+  localStorage.removeItem("token");
+navigate("/");
+window.location.reload();
+ console.log("logout");
+  alert("Log out");
+}
   return (
     <>
-      <div className="col-8 ps-md-3 pt-1 Heading">Welcome to MetaMart Dashboard</div>
+      <div className="col-8 pt-1 Heading">Welcome to MetaMart Dashboard</div>
   <div className='col-4  pt-2 d-flex flex-row justify-content-end'>
     <div className="Mode me-md-1" >
-    <i className={`${Mode}  Items`} onClick={ChangeMode}></i>
+    <i className={`${ModeIcon}  Items`} onClick={ChangeMode}></i>
     </div>
     <div className="dropdown1 me-md-1">
   <span className="" data-bs-toggle="dropdown"  aria-expanded="false">
@@ -46,6 +60,9 @@ function ChangeMode()
     <li className='dropdown-item '><img src="./images/Header/india.png" className='Dropdown-Item-Images me-sm-3' alt='india'/><h6 className="d-inline DropDownText">india</h6></li>
   </ul>
 </div>
+<div className="Mode me-md-1" >
+    <i className="fa-solid fa-right-from-bracket Items" onClick={LogOut}></i>
+    </div>
   </div>
     </>
   )
