@@ -22,7 +22,6 @@ import ProductFeedback from "./Admin_Pages/ProductFeedback"
 import ProfileSetting from "./Admin_Pages/ProfileSetting"
 import Feedbacks from "./Admin_Pages/Feedbacks"
 import ProductRequests from "./Admin_Pages/ProductRequests"
-import ViewProduct from "./Admin_Pages/ViewProducts"
 import _404Page from "./Admin_Pages/404Page"
 import "../styles/Home.css"
 export default function Home() {
@@ -32,10 +31,7 @@ export default function Home() {
 {user && <Sidebar>
   <Routes>
   <Route path="/Dashboard" element={<Dashboard/>}/>
-<Route path="/Products/" element={<Products/>}>
-  <Route path="AddProducts" element={<AddProducts/>}/>
-  <Route path="ViewProduct" element={<ViewProduct/>}/> 
-</Route>
+<Route path="/Products" element={<Products/>}/>
 <Route path="/Orders/" element={<Orders/>}>
   <Route path="CompletedOrders" element={<CompletedOrders/>}/>
   <Route path="PendingOrder" element={<PendingOrder/>}/>

@@ -1,0 +1,48 @@
+.a{
+    border:1px solid red;
+}
+.ProductSection
+{
+    height: 100vh;
+}
+.AddProductButton{
+background-color: #0d6efd;
+color:white;
+border-radius: 10px;
+border:none;
+}
+input[type='text']{
+    background-color: white;
+}
+input[type='text']:focus{
+    background-color: #c3ffed66;
+}
+/* Add Product Section */
+.AddProductButton:hover{
+    background-color: rgb(0, 81, 255);
+}
+.AddProductFormLabels{
+
+}
+.dropdown-menu{
+    border: 1px solid rgb(0, 4, 255);
+}
+.AddProductDropDownItems{
+cursor: pointer;
+}
+.AddProductDropDownItems:hover{
+    background-color: rgb(1, 58, 145);
+    font-weight: 700;
+    color: white;
+}
+.GenderTypeButton,.AddProductTypeButton{
+    background-color: #dfdfdf;
+    color: black;
+}
+textarea.form-control {
+    min-height: calc(1.5em + 10.75rem + 2px);
+    background-color: white;
+}
+.form-select:focus{
+    border: none;outline: none;
+}

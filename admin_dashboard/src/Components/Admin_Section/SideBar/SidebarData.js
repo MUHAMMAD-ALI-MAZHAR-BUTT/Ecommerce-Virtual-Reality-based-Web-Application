@@ -2,11 +2,7 @@ const SidebarData=[
     
     {name:"Dashboard",path:"/Dashboard",Icon:"fa-solid fa-house"},
     {name:"Customers",path:"/Customers",Icon:"fa-solid fa-users"},
-    {name:"Products",path:"/Products",Icon:"fa-solid fa-list",
-    subRoutes:[
-        {name:"Add Product",path:"/Products/AddProducts",Icon:"fa-solid fa-plus"},
-        {name:"View Product",path:"/Products/ViewProduct",Icon:"fa-solid fa-eye"}
-    ]},
+    {name:"Products",path:"/Products",Icon:"fa-solid fa-list"},
     {name:"Orders",path:"/Orders",Icon:"fa-regular fa-rectangle-list",
     subRoutes:[
         {name:"Completed",path:"/Orders/CompletedOrders",Icon:"fa-regular fa-circle-check"},

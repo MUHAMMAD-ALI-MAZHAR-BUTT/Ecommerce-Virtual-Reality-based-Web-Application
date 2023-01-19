@@ -12,12 +12,12 @@ export default function AddProducts() {
   }
   return (
     <>
-      <div className="container-fluid" >
+      <div className="container-fluid " >
         <div className='row my-3'><h1 className=' text-center HeadingOfPage'>Add Products</h1></div>
     <div className='row'>
     <form>
- <div className='container-fluid px-sm-5'>
-<div className='row '>
+ <div className='container-fluid px-md-5'>
+<div className='row px-md-5'>
 <div className="col-sm-3 mb-3">
 <label className="form-label fw-bold">Product Name</label>
   <input type="text" class="form-control" id="ProductName" placeholder="Enter Product Name"/>
@@ -31,29 +31,19 @@ export default function AddProducts() {
   <input type="text" class="form-control" placeholder="Leather"/>
 </div>
 <div className="col-sm-3 mb-3">
-<label className="form-label fw-bold">Category Name</label>
-<div className="dropdown">
-  <a className="btn GenderButton" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-    {Gender}
-  </a>
 
-  <ul className="dropdown-menu GenderMenu" aria-labelledby="dropdownMenuLink">
-    <li><div className="dropdown-item " onClick={()=>Set_Gender("Male")}>For Male</div></li>
-    <li><div className="dropdown-item" onClick={()=>Set_Gender("Female")}>For Female</div></li>
-  </ul>
 </div>
 </div>
-</div>
-<div className='row '>
+<div className='row px-md-5'>
 <div class="mb-3 w-100">
 <label className="form-label fw-bold">Product Description</label>
   <textarea  id="Description_Field" className='w-100 DescriptionField' rows="5" cols="5"></textarea>
 </div>
 </div>
-<div className="row">
+<div className="row px-md-5">
 <h6 className='fw-bold'>Available Pieces</h6>
 </div>
-<div className='row'>
+<div className='row px-md-5'>
 <div className="w-25">
   <div className=''>
   <label className="form-label fw-bold">Small</label>
@@ -87,10 +77,10 @@ export default function AddProducts() {
 </div>
 </div>
 </div>
-<div className="row">
+<div className="row px-md-5">
 <h6 className='fw-bold'>Available Colors</h6>
 </div>
-<div className='row'>
+<div className='row px-md-5'>
 <div className="w-25">
   <div className=''>
   <label className="form-label fw-bold">Small</label>
