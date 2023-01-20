@@ -1,0 +1,22 @@
+.a {
+    border: 1px solid red;
+}
+.b{
+    border: 1px solid green;;
+}
+.FAQS-Cover{
+    background-color: aliceblue;
+}
+#FAQS-Tabs{
+    
+}
+.d{
+    background-color: aqua;
+}
+.accordion-item{
+    border-radius: 15px !important;
+}
+#TOPFAQS-tab,#VirtualTour-tab,#VirtualEnv-tab,#General-tab,#SizingAndFitting-tab,#ReturnPolicy-tab{
+    font-weight: 700;
+   
+}

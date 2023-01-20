@@ -1,0 +1,17 @@
+.VRModeButton{
+    position: absolute;
+    border-radius: 20px;
+    font-size: 25px;
+    color:white;
+    background-color:rgb(1 20 159);
+    border: none;
+    top: 80%;
+    left: 10%;
+    box-shadow: 2px 2px 2px rgb(2, 96, 184);
+animation: mymove 5s infinite;
+}
+
+@keyframes mymove {
+from {left: 0px;}
+to {left: 50px;}
+}

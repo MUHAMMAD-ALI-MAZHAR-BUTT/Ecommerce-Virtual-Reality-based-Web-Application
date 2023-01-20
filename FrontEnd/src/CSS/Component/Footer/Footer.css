@@ -1,0 +1,43 @@
+.a{
+    border: 2px solid red;
+}
+.b{
+    border:2px solid green;
+}
+.Footer{
+    /* background-color: #6301ed;; */
+    background-color:rgb(1 20 159);
+}
+.Social-Links-Heading{
+    color:white;   
+}
+.Social-Links{
+text-decoration: none;
+color:white;
+}
+.Social-Link-Icons{
+    color:white
+}
+.YouTube{
+    color:red;
+}
+.Footer-Bottom{
+    color:white
+}
+.Help-Items
+{
+    color:white ;
+    text-decoration:none;
+}
+.Map{
+    border-radius: 10px;
+}
+/* .Help-Items:hover , .Social-Link-Icons:hover,.YouTube:hover{
+color: aqua;
+} */
+.Social-links-List:hover > .childOfSocial-links-List{
+    color: aqua;
+}
+.Help-Items:hover{
+    color: aqua;
+}

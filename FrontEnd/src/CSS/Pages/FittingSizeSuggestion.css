@@ -1,0 +1,28 @@
+.a{
+    border:2px solid red;
+}
+.SizeSuggestionImage{
+    height:100%;
+    width:100%;
+    border-radius:20px;
+}
+.waisteInput{
+    outline:none;
+   
+}
+.waisteInput:focus{
+    outline:none !important;
+    border:1px solid rgb(0, 255, 242);
+}
+input[type="number"]:focus{
+
+    outline:none !important;
+}
+.suggestion{
+    height: 100%;
+    width: 100%;
+}
+.displayBlock{
+    display: block;
+}
+.SizeSuggestion{background-color: aliceblue;}

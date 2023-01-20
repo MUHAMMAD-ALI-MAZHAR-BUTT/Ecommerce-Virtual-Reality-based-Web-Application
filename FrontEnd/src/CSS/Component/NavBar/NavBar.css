@@ -1,0 +1,88 @@
+#google_translate_element select{ background-color:#f6edfd; color:#383ffa; border: none; 
+    outline: none;
+    border-radius:4px; 
+    padding:5px 4px }
+    .goog-logo-link {
+        display:none !important;
+    }     
+    .goog-te-gadget{
+        color: transparent !important;
+    }
+.NavBar-Cover{
+background-color:rgb(1 20 159);
+box-shadow: 10px 5px 10px 2px gray;
+}
+.dropdown-menu{
+    border:2px solid rgb(0, 7, 61);
+}
+.BannerTittle{
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+/* .NavBar-Items{
+    color:white
+}
+.nav-link{
+    color: white;
+} */
+.Mode{
+    font-size: 25px;
+    color: white;
+    cursor:pointer;
+}
+.Currency-Conversion,.Language-Conversion,.Magnifying-Glass-icon,.Shopping-Cart{
+    font-size: 20px;  
+    cursor:pointer;
+}
+.Flags-Icons{
+    height:29px;
+    width: 35px;
+}
+.nav-item{
+    color:white;
+    font-size:17px;
+    font-weight: 600;
+}
+.OuterWear-Heading{
+color: rgb(0, 7, 61);
+font-weight:700;
+}
+
+.vertical-Line {
+    border-left: 2px solid rgb(0, 7, 61);
+    height: 120px;
+  }
+  .Man-products-Link{
+    text-decoration:none;
+    color:rgb(48, 48, 48);
+  }
+  .WebSite-Pages-Link{
+    text-decoration:none;
+    color:rgb(48, 48, 48);
+    width: 100%;
+  }
+  .pageslinks{
+    width: 100%;
+  }
+  .Women-products-Link{
+    text-decoration:none;
+    color:rgb(48, 48, 48);
+}
+.Outerwear-Dropdown-Item{
+    width:350px;
+}
+.SearchFieldSection{
+    background-color: aliceblue;
+}
+.SearchField{
+    width: 400px;
+    height: 40px;;
+    border-radius: 10px;
+}
+.SignIn{
+    color:white;
+    text-decoration: none;
+}
+.ProfileDropdown{
+    width:50px;
+}

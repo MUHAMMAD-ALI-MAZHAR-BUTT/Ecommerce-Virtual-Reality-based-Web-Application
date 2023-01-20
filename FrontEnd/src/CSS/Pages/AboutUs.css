@@ -1,0 +1,19 @@
+.a{
+    border:2px solid red;
+}
+.b{
+    border:2px solid green;
+}
+.AboutUs-Heading{
+    text-align: center;
+    color:rgb(0, 7, 61)
+}
+.AboutUs-Images{
+    height: 100%;
+    width: 100%;
+    border-radius: 14px;
+}
+.aboutustext{
+    font-size: 22px;
+    font-weight: lighter;
+}
