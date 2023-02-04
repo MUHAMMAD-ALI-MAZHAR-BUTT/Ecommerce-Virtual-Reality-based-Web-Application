@@ -15,11 +15,7 @@ const SidebarData=[
         {name:"Product Analytics",path:"/Analytics/ProductAnalytics",Icon:"fa-solid fa-chart-mixed"}]
     },
     {name:"History",path:"/History",Icon:"fa-solid fa-clock-rotate-left"},
-    {name:"Product Requests",path:"/ProductRequests",Icon:"fa-regular fa-clipboard-list",
-    subRoutes:[
-    {name:"Completed",path:"/ProductRequests/CompletedProductRequests",Icon:"fa-regular fa-circle-check"},
-    {name:"Pending",path:"/ProductRequests/PendingProductRequests",Icon:"fa-sharp fa-solid fa-message-lines"}]
-    },
+    {name:"Product Requests",path:"/ProductRequests",Icon:"fa-regular fa-clipboard-list"},
     {name:"News Section",path:"/NewsSection",Icon:"fa-solid fa-newspaper"},
     {name:"Feedbacks",path:"/Feedbacks",Icon:"fa-solid fa-comments",
     subRoutes:[   

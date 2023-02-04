@@ -8,7 +8,6 @@ import PaymentAnalytics from "./Admin_Pages/Analytics/PaymentAnalytics"
 import ProductAnalytics from "./Admin_Pages/Analytics/ProductsAnalytics"
 import AddProducts from "./Admin_Pages/AddProducts"
 import CompletedOrders from "./Admin_Pages/CompletedOrders"
-import CompletedProductRequests from "./Admin_Pages/CompletedProductRequests"
 import Customers from "./Admin_Pages/Customers"
 import Dashboard from "./Admin_Pages/Dashboard"
 import Orders from "./Admin_Pages/Orders"
@@ -17,7 +16,6 @@ import Products from "./Admin_Pages/Products"
 import GeneralFeedback from "./Admin_Pages/GeneralFeedback"
 import History from "./Admin_Pages/History"
 import PendingOrder from "./Admin_Pages/PendingOrder"
-import PendingProductRequests from "./Admin_Pages/PendingProductRequests"
 import ProductFeedback from "./Admin_Pages/ProductFeedback"
 import ProfileSetting from "./Admin_Pages/ProfileSetting"
 import Feedbacks from "./Admin_Pages/Feedbacks"
@@ -44,10 +42,7 @@ export default function Home() {
 </Route>
 <Route path="/NewsSection" element={<NewsSection/>}/>
 <Route path="/History" element={<History/>}/>
-<Route path="/ProductRequests/" element={<ProductRequests/>}>
-  <Route path="CompletedProductRequests" element={<CompletedProductRequests/>}/> 
-  <Route path="PendingProductRequests" element={<PendingProductRequests/>}/>
-</Route>
+<Route path="/ProductRequests/" element={<ProductRequests/>}/>
 <Route path="/Feedbacks/" element={<Feedbacks/>}>
   <Route path="GeneralFeedback" element={<GeneralFeedback/>}/> 
   <Route path="ProductFeedback" element={<ProductFeedback/>}/>

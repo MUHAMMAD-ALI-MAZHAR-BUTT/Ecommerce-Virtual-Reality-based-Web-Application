@@ -6,6 +6,9 @@ export default function Products() {
   const [Gender,SetGender]=useState("Select Gender");
   const [Colorvalue, setColorvalue] = useState('');
   const [TwoDImages, setTwoDImages] = useState([]);
+  const [TableValues,setTableValues]=useState(
+    ['ExtraSmall',0,0,]
+  )
   const [TableChecks,setTableChecks]=useState({
     "option1":true,
     "option2":true,
@@ -13,22 +16,21 @@ export default function Products() {
     "option4":true,
     "option5":true,
   })
-
   function TableChecker(){
  document.getElementById("option1").addEventListener("click",()=>
- {setTableChecks({...TableChecks,"option1": TableChecks['option1']===false?true:false}) ;});
+ {setTableChecks({...TableChecks,"option1": TableChecks['option1']===true?false:true}) ;});
  
  document.getElementById("option2").addEventListener("click",()=>
- {setTableChecks({...TableChecks,"option2": TableChecks['option2']===false?true:false}) ;});
+ {setTableChecks({...TableChecks,"option2": TableChecks['option2']===true?false:true}) ;});
  
  document.getElementById("option3").addEventListener("click",()=>
- {setTableChecks({...TableChecks,"option3": TableChecks['option3']===false?true:false}) ;});
+ {setTableChecks({...TableChecks,"option3": TableChecks['option3']===true?false:true}) ;});
  
  document.getElementById("option4").addEventListener("click",()=>
- {setTableChecks({...TableChecks,"option4": TableChecks['option4']===false?true:false}) ;});
+ {setTableChecks({...TableChecks,"option4": TableChecks['option4']===true?false:true}) ;});
  
  document.getElementById("option5").addEventListener("click",()=>
- {setTableChecks({...TableChecks,"option5": TableChecks['option5']===false?true:false}) ;});
+ {setTableChecks({...TableChecks,"option5": TableChecks['option5']===true?false:true}) ;});
   }
   const  handleOnchange  =  val  => {
     setColorvalue(val)
@@ -58,7 +60,8 @@ export default function Products() {
   ]
   const [Seasonsvalue, setSeasonsvalue] = useState('')
   const  handleOnSeasonInputchange  =  val  => {
-    setSeasonsvalue(val)
+    setSeasonsvalue(val);
+    AddProduct();
   }
   const  SeasonInputoptions  = [
     { label:  'Autumn', value:  'Autumn'  },
@@ -81,9 +84,9 @@ function Upload2DImages()
   // Now show images
   showImages();
 }
+var ThumbnailImagecontainer=[];
 function ThumbnailPic()
 {
-  var ThumbnailImagecontainer=[];
   var ThumbnailPicImg=document.getElementById("ThumbnailButton").files;
   ThumbnailImagecontainer.push({
     "name":ThumbnailPicImg[0].name,
@@ -119,10 +122,19 @@ function deleteImage(index)
 {
 console.log(index)
 }
+
   /** Variables */
   function AddProduct()
   {
-
+    let ProductName=document.getElementById("ProductName").value;
+    let ProductPrice=document.getElementById("ProductPrice").value;
+    let ProductGender=document.getElementById("ProductGender").value;
+    let ProductWeight=document.getElementById("ProductWeight").value;
+    let ProductDescription=document.getElementById("ProductDescription").value;
+    let ProductFabricType=document.getElementById("ProductFabricType").value;
+console.log(ProductName,ProductPrice,ProductGender,Seasonsvalue,ProductWeight,ProductFabricType,ProductDescription,
+  Two2Selectedimages,ThumbnailImagecontainer
+  )
   }
   return (
 <>
@@ -155,20 +167,22 @@ console.log(index)
           <div className="row ">
           <div className="mb-1 col">
   <span className="form-label AddProductFormLabels">Name</span>
-  <input type="text" className="form-control" name="OuterwearName" onChange={AddProduct} placeholder=''></input>
+  <input type="text" className="form-control" id="ProductName" name="OuterwearName" onChange={AddProduct} placeholder=''></input>
 </div>
 <div className='mb-1 col'>
   <div className="row mt-1">
   <div className="col">
 <span className="form-label AddProductFormLabels ">Price</span>
 <div className="input-group">
-  <input type="text" className="form-control" name="OuterwearPrice" onChange={AddProduct} placeholder="50" aria-label="Recipient's username" aria-describedby="basic-addon2"></input>
+  <input type="text" className="form-control" name="OuterwearPrice" onChange={AddProduct} placeholder="50" 
+  id="ProductPrice"
+  aria-label="Recipient's username" aria-describedby="basic-addon2"></input>
   <span className="input-group-text" id="basic-addon2">$</span>
 </div>
 </div>
 <div className="dropdown col d-flex flex-column ">
 <span className="form-label AddProductFormLabels  mb-0">Gender</span>
-  <select className="form-select" aria-label="Default select example">
+  <select className="form-select" aria-label="Default select example" id="ProductGender" onChange={AddProduct} >
   <option className="AddProductDropDownItems" value="Male">Male </option>
   <option className="AddProductDropDownItems" value="Female">Female</option>
 </select>
@@ -183,6 +197,7 @@ console.log(index)
         onChange={handleOnSeasonInputchange}
         options={SeasonInputoptions}
         placeholder="Select Seasons"
+
       />
   </div>
 <div className='col'>
@@ -190,16 +205,18 @@ console.log(index)
   <div className="col">
 <span className="form-label AddProductFormLabels ">Weight</span>
 <div className="input-group">
-  <input type="number" className="form-control" name="OuterwearWeight"  placeholder="50"  aria-describedby="basic-addon2"></input>
+  <input type="number" className="form-control" name="OuterwearWeight" onChange={AddProduct} 
+  id="ProductWeight"
+  placeholder="50"  aria-describedby="basic-addon2"></input>
   <span className="input-group-text" id="basic-addon2"> lbs</span>
 </div>
 </div>
   <div className="dropdown col d-flex flex-column ">
 <span className="form-label AddProductFormLabels  mb-0">Fabric Type</span>
-<select className="form-select" aria-label="Default select example">
-  <option className="AddProductDropDownItems" value="Male">Leather </option>
-  <option className="AddProductDropDownItems" value="Male">Sports</option>
-  <option className="AddProductDropDownItems" value="Female">Puffed</option>
+<select className="form-select" aria-label="Default select example" id="ProductFabricType" onChange={AddProduct} >
+  <option className="AddProductDropDownItems" value="Leather">Leather </option>
+  <option className="AddProductDropDownItems" value="Sports">Sports</option>
+  <option className="AddProductDropDownItems" value="Puffed">Puffed</option>
 </select>
 </div>
   </div>
@@ -208,7 +225,9 @@ console.log(index)
           <div className='row mt-1'>
             <div className="col mb-3">
   <span className="form-label">Description</span>
-  <textarea className="form-control AddProductTextArea"></textarea>
+  <textarea className="form-control AddProductTextArea" onChange={AddProduct} 
+  id="ProductDescription"
+  ></textarea>
             </div>
           </div>
           <div className="row my-1 mt-md-3">
@@ -413,6 +432,7 @@ console.log(index)
       </div>
               </div>
             </div>
+            
         </div>
       </div>
       <div className="modal-footer">
