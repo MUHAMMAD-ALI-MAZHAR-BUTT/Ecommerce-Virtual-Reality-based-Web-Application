@@ -11,6 +11,10 @@ a{
     /* border: 1px solid black;
     border-radius: 10px; */
 }
+.LinksColor{
+    color:rgb(0, 140, 255);
+    text-decoration:underline;
+}
 .BespokeContainer{
     background-color: aliceblue;
 }

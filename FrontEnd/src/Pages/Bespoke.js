@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
+import {useNavigate} from 'react-router-dom';
 import "../CSS/Pages/Bespoke.css";
 import { HexColorPicker } from "react-colorful";
 import { motion } from "framer-motion";
 import 'animate.css';
 export default function Bespoke(props) {
+  const navigate = useNavigate();
   const [showmodal,setshowmodal]=useState(0);
   const [Selectedcolor, setColor] = useState("#aabbcc");
   const [BeSpokeData,SetBeSpokeData]=useState(
@@ -19,7 +21,9 @@ export default function Bespoke(props) {
       "PrefferedSize":"",
       "Waist":"",
       "Chest":"",
-      "ArmLength":""
+      "ArmLength":"",
+      "OrderDate":"",
+      "Status":"Pending"
     }
   )
   function GenderRadioValue() {
@@ -47,63 +51,28 @@ function PrefferedSizeValues() {
   }
 
 }
-
 function HandleBespokeInputs(e)
 {
   SetBeSpokeData({...BeSpokeData,[e.target.name]:String(e.target.value)});
-}
-  // const [MultiStepFormNumber,SetMultiStepFormNumber]=useState(0);
   
-  // function ForwardStep(InputValue)
-  // {
-  //   if(InputValue===0)
-  //   {
-  //     SetMultiStepFormNumber(1);
-  //   }
-  //   else if(InputValue===1)
-  //   {
-  //     SetMultiStepFormNumber(2);
-  //   }
-  //   else if(InputValue===2)
-  //   {
-  //     SetMultiStepFormNumber(3);
-  //   }
-  //   else if(InputValue===3)
-  //   {
-  //     SetMultiStepFormNumber(4);
-  //   }
-  //   else if(InputValue===4){
-  //     SetMultiStepFormNumber(5);
-  //   }
-  // }
-  // function BackwordStep(InputValue)
-  // {
-  //   if(InputValue===0)
-  //   {
-  //     SetMultiStepFormNumber(0);
-  //   }
-  //   else if(InputValue===1)
-  //   {
-  //     SetMultiStepFormNumber(0);
-  //   }
-  //   else if(InputValue===2)
-  //   {
-  //     SetMultiStepFormNumber(1);
-  //   }
-  //   else if(InputValue===3)
-  //   {
-  //     SetMultiStepFormNumber(2);
-  //   }
-  //   else if(InputValue===4){
-  //     SetMultiStepFormNumber(3);
-  //   }
-  // }
-  /**
- * Define a function to navigate betweens form steps.
- * It accepts one parameter. That is - step number.
- */
-
+console.log(BeSpokeData);
+}
+  useEffect(()=>
+  {
+    let newDate = new Date()
+    let date_raw = newDate.getDate();
+    let month_raw = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    let date, month;
+    if (date_raw<10)  {  date ="0"+date_raw.toString()} else {  date =date_raw.toString()}
+    if (month_raw<10)  {  month ="0"+month_raw.toString()} else {  month =month_raw.toString()} 
+    let Date_=date+"-"+month+"-"+year;
+    SetBeSpokeData({...BeSpokeData,["OrderDate"]:String(Date_)});
+    console.log(BeSpokeData);
+  },[])
 useEffect(()=>{
+  
+
 const navigateToFormStep = (stepNumber) => {
   /**
    * Hide all form steps.
@@ -174,7 +143,7 @@ document.querySelectorAll(".btn-navigate-form-step").forEach((formNavigationBtn)
 });});
 const BespokeFormSubmit=async()=>
 {
-  const response=await fetch("http://localhost:5000/bespoke",
+   const response=await fetch("http://localhost:5000/bespoke",
   {
     method:"post",
     body:JSON.stringify(BeSpokeData),
@@ -188,7 +157,11 @@ const BespokeFormSubmit=async()=>
  else
  {
   console.log("Data not submitted");
- }
+ } 
+}
+function ChangeRoute()
+{
+  navigate('/');
 }
   return (
    <>
@@ -297,6 +270,7 @@ Others
       <button className="button btn-navigate-form-step NextButtonMultiStepForm1 col-3 offset-md-4 p-1" type="button" step_number="2"
        onClick={GenderRadioValue}
       >Next</button>
+   
 </div>
         </div>
         <div className="col-6 RightSectionOfMultiStepForm">
@@ -460,7 +434,8 @@ Extra Large
 <form>
 <div className="input-group my-2">
   <h5 className='me-md-3 mt-2'>Chest :</h5>
-  <input type="number" className="form-control" min={5} name="Chest" aria-label="Dollar amount (with dot and two decimal places)"
+  <input type="number" className="form-control" min={5} name="Chest"
+   aria-label="Dollar amount (with dot and two decimal places)"
   onChange={HandleBespokeInputs}
   />
   <span className="input-group-text">cm</span>
@@ -534,8 +509,9 @@ Enter brief Detail about custom Outerwear :
  <div className='row '>
 <div className="input-group col-3 d-flex">
 <h5 className='me-2'>Minimum Price</h5>
-  <input type="number" className="form-control"  min={50} aria-label="Dollar amount (with dot and two decimal places)" 
+  <input type="number" className="form-control"  disabled value={80} min={80} aria-label="Dollar amount (with dot and two decimal places)" 
    name="MinimumPrice"
+
    onChange={HandleBespokeInputs}/>
   <span className="input-group-text">$</span>
 </div>
@@ -544,7 +520,7 @@ Enter brief Detail about custom Outerwear :
 </div>
 <div className="input-group col-3 d-flex">
 <h5 className='me-2'>Maximum Price</h5>
-  <input type="number" className="form-control" min={1000} aria-label="Dollar amount (with dot and two decimal places)" 
+  <input type="number" className="form-control" min={80} aria-label="Dollar amount (with dot and two decimal places)" 
   name="MaximumPrice"
    onChange={HandleBespokeInputs}
   />
@@ -572,7 +548,7 @@ Enter brief Detail about custom Outerwear :
       <h5 className='ps-md-5'>Gender : </h5>
       </div>
          <div className='col-6 '>
-         <input type="text" class="form-control" value={`${BeSpokeData['Gender']}`}/>
+         <input type="text" className="form-control" value={`${BeSpokeData['Gender']}`}/>
          </div>
       </div>
       <div className="row px-md-5  py-md-2 me-md-5">
@@ -580,7 +556,7 @@ Enter brief Detail about custom Outerwear :
       <h5 className='ps-md-5'>Material Type : </h5>
       </div>
          <div className='col-6 '>
-         <input type="text" class="form-control" value={`${BeSpokeData['MaterialType']}`}/>
+         <input type="text" className="form-control" value={`${BeSpokeData['MaterialType']}`}/>
          </div>
       </div>
       <div className="row px-md-5 py-md-2  me-md-5">
@@ -596,7 +572,7 @@ Enter brief Detail about custom Outerwear :
       <h5 className='ps-md-5'>Description: </h5>
       </div>
          <div className='col-6 '>
-         <textarea type="text" class="form-control" value={`${BeSpokeData['JacketDescription']}`}/>
+         <textarea type="text" className="form-control" value={`${BeSpokeData['JacketDescription']}`}/>
          </div>
       </div>
       <div className="row px-md-5 py-md-2  me-md-5">
@@ -610,7 +586,7 @@ Enter brief Detail about custom Outerwear :
             </div>
             <div className='col'>
           
-          <input type="text" class="form-control" value={`${BeSpokeData['PrefferedSize']}`}/>
+          <input type="text" className="form-control" value={`${BeSpokeData['PrefferedSize']}`}/>
             </div>
           </div>
           <div className="row my-1">
@@ -618,9 +594,9 @@ Enter brief Detail about custom Outerwear :
             <h5 className='ps-md-5'>Waist :</h5>
             </div>
             <div className='col'>
-            <div class="input-group">
-          <input type="text" class="form-control" value={`${BeSpokeData['Waist']}`}/>
-         <span class="input-group-text">cm</span>
+            <div className="input-group">
+          <input type="text" className="form-control" value={`${BeSpokeData['Waist']}`}/>
+         <span className="input-group-text">cm</span>
           </div>
             </div>
           </div>
@@ -630,9 +606,9 @@ Enter brief Detail about custom Outerwear :
             <h5 className='ps-md-5'>Chest :</h5>
             </div>
             <div className='col'>
-            <div class="input-group">
-          <input type="text" class="form-control" value={`${BeSpokeData['Chest']}`}/>
-         <span class="input-group-text">cm</span>
+            <div className="input-group">
+          <input type="text" className="form-control" value={`${BeSpokeData['Chest']}`}/>
+         <span className="input-group-text">cm</span>
           </div>
             </div>
           </div>
@@ -641,9 +617,9 @@ Enter brief Detail about custom Outerwear :
             <h5 className='ps-md-5'>Arm Length :</h5>
             </div>
             <div className='col'>
-            <div class="input-group">
-          <input type="text" class="form-control" value={`${BeSpokeData['ArmLength']}`}/>
-         <span class="input-group-text">cm</span>
+            <div className="input-group">
+          <input type="text" className="form-control" value={`${BeSpokeData['ArmLength']}`}/>
+         <span className="input-group-text">cm</span>
           </div>
             </div>
           </div>
@@ -656,18 +632,18 @@ Enter brief Detail about custom Outerwear :
          <div className='col-6 '>
           <div className='row'>
             <div className='col-5'>
-            <div class="input-group">
-  <input type="text" class="form-control" value={`${BeSpokeData['MinimumPrice']}`}/>
-  <span class="input-group-text">$</span>
+            <div className="input-group">
+  <input type="text" className="form-control" value={`${BeSpokeData['MinimumPrice']}`}/>
+  <span className="input-group-text">$</span>
 </div>
             </div>
           <div className='col-1'>  
 <div className='mx-1'><hr className='Rangeline'/></div>
             </div>
             <div className='col-5'>
-            <div class="input-group">
-  <input type="text" class="form-control" value={`${BeSpokeData['MaximumPrice']}`}/>
-  <span class="input-group-text">$</span>
+            <div className="input-group">
+  <input type="text" className="form-control" value={`${BeSpokeData['MaximumPrice']}`}/>
+  <span className="input-group-text">$</span>
 </div>
             </div>
           </div>
@@ -675,17 +651,46 @@ Enter brief Detail about custom Outerwear :
       </div>
       <div className='row mt-4 d-flex justify-content-evenly'>
  <button className=" NextButtonMultiStepForm1 col-3 p-1 button btn-navigate-form-step" type="button" step_number="6">Prev</button>
+ 
  <button className="button btn-navigate-form-step NextButtonMultiStepForm1 col-3  p-1" type="button" 
- onClick={BespokeFormSubmit}
- >Submit</button>
-               
+     data-bs-toggle="modal" data-bs-target="#exampleModal"
+onClick={BespokeFormSubmit}
+ >Submit</button>            
 </div>
       </div>
         </form>
     </div>
 </div>
 
-    </div>   </div>
+    </div>   
+    <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog  modal-dialog-centered">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">BeSpoke</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={ChangeRoute}></button>
+      </div>
+      <div className="modal-body">
+      {showmodal===1?
+      <div>Your Request has been sent to the Admin.The Admin will review your request and mail you the response.
+
+        In case of any further Queries you can contact us through our mail at &nbsp;
+        <div className="LinksColor">metaverse@gmail.com</div>
+      </div>:
+      <div>Your Request has not been sent to the Admin due to some issues.You can submit the request again and
+        if still same issue occur then contact us through our mail at &nbsp;
+        <div className="LinksColor">metaverse@gmail.com</div>
+      </div>}
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" onClick={ChangeRoute}>Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+ 
+
  
    </>
   )

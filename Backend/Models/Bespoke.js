@@ -10,6 +10,8 @@ const BespokeScheme=new mongoose.Schema({
     PrefferedSize:String,
       Waist:String,
       Chest:String,
-      ArmLength:String
+      ArmLength:String,
+      OrderDate:String,
+      Status:String
 })
 module.exports=mongoose.model("Bespoke",BespokeScheme);
