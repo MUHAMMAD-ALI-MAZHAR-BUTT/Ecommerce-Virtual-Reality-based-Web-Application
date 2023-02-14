@@ -3,3 +3,5 @@ const { Bespoke } = require("../models/Bespoke");
 router.post("/", async (req, res) => {
 
 });
+
+module.exports = router;

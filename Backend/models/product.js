@@ -1,0 +1,55 @@
+const mongoose=require('mongoose');
+
+const productSchema=new mongoose.Schema({
+    name:{
+        type:String,
+        required:true,
+        minLength:3,
+        maxLength:200,
+    },
+    price:{
+        type:Number,
+        required:true,
+        min:0,
+    },
+    gender:{
+        type:String,
+        required:true,
+        // minLength:3,
+        // maxLength:200,
+    },
+    season:{
+        type:String,
+        required:true,
+        // minLength:5,
+        // maxLength:500,
+    },
+    weight:{
+        type:Number,
+        required:true,
+        min:0,
+    },
+    fabricType:{
+        type:String,
+        required:true,
+        // minLength:3,
+        // maxLength:200,
+    },
+    description:{
+        type:String,
+        required:true,
+        minLength:3,
+    },
+    sizesTable:{
+        type:Object,
+        required:true,
+    }
+    // image:{
+    //     type:String,
+    //     required:true,
+    // },
+});
+
+const Product=mongoose.model("Product",productSchema);
+module.exports.Product=Product;
+module.exports.productSchema=productSchema;
