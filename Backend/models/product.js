@@ -43,11 +43,11 @@ const productSchema=new mongoose.Schema({
     sizesTable:{
         type:Object,
         required:true,
-    }
-    // image:{
-    //     type:String,
-    //     required:true,
-    // },
+    },
+    productTwoDImages:{
+        type:[String],
+        required:true,
+    },
 });
 
 const Product=mongoose.model("Product",productSchema);

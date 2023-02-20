@@ -3,10 +3,31 @@ const router=express.Router();
 const mongoose=require('mongoose');
 const {Product}=require('../models/product');
 const _=require('lodash');
+const multer  = require('multer');
+const path=require('path');
+// const path=require('./productImages')
 
-router.post('/',async(req,res)=>{
 
-    const product=new Product(_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']));
+const fileStorageEngine=multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null,path.join(__dirname, '/productImages/'));
+    },
+    filename:(req,file,cb)=>{
+        const uniqueName=file.originalname
+        cb(null,uniqueName);
+    }
+})
+const upload=multer({storage:fileStorageEngine});
+
+router.post('/',upload.array('product2DImages[]',5),async(req,res)=>{
+
+    console.log(req.files);
+    
+    const productTwoDImages=req.files.map(file=> file.path);
+    console.log('all images path',productTwoDImages);
+
+    // const productObj=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable'],productTwoDImages
+    const product=new Product(_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']),productTwoDImages);
 
     console.log('product after request is',product);
     try {

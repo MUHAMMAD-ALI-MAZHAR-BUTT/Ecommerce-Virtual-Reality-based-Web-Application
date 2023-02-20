@@ -151,58 +151,81 @@ export default function Products() {
     )
     console.log('smallColorvalue', smallColorvalue, 'extraSmallColorvalue', extraSmallColorvalue, 'mediumColorvalue', mediumColorvalue, 'largeColorvalue', largeColorvalue, 'extraLargeColorvalue', extraLargeColorvalue);
     // let options=['option1','option2','option3','option4','option5'];
-    
-   
-    
-    let allSizes=['extraSmall','small','medium','large','extraLarge'];
+
+
+
+    let allSizes = ['extraSmall', 'small', 'medium', 'large', 'extraLarge'];
     let sizesTable = {};
     let isChecked;
-    let colorArray=[];
+    let colorArray = [];
     let quantity;
-   
-   
-    allSizes.map((size,index)=>{
+
+
+    allSizes.map((size, index) => {
       //setting all sijes attributes
 
       // checked status 
-      isChecked = document.getElementById(`option${index+1}`).checked;
-      
+      isChecked = document.getElementById(`option${index + 1}`).checked;
+
       //splittig string of colors to array
-      if(index==0) colorArray = isChecked ? extraSmallColorvalue.split(",") : [];
-      if(index==1) colorArray = isChecked ? smallColorvalue.split(",") : [];
-      if(index==2) colorArray = isChecked ? mediumColorvalue.split(",") : [];
-      if(index==3) colorArray = isChecked ? largeColorvalue.split(",") : [];
-      if(index==4) colorArray = isChecked ? extraLargeColorvalue.split(",") : [];
-      
+      if (index == 0) colorArray = isChecked ? extraSmallColorvalue.split(",") : [];
+      if (index == 1) colorArray = isChecked ? smallColorvalue.split(",") : [];
+      if (index == 2) colorArray = isChecked ? mediumColorvalue.split(",") : [];
+      if (index == 3) colorArray = isChecked ? largeColorvalue.split(",") : [];
+      if (index == 4) colorArray = isChecked ? extraLargeColorvalue.split(",") : [];
+
       // quantity of checked item
       quantity = isChecked ? Number(document.getElementById(`${size}Quantity`).value) : 0;
-      
+
       // updatig sizesTable object with each size
       // if (isChecked){
-        sizesTable[size] = {
-          isChecked,
-          colors:colorArray,
-          quantity,
-        }
+      sizesTable[size] = {
+        isChecked,
+        colors: colorArray,
+        quantity,
+      }
       // }
 
     })
-    console.log('sizesTable',sizesTable);
+    console.log('sizesTable', sizesTable);
 
-    const product={
-      name:ProductName,
-      price:ProductPrice,
-      gender:ProductGender,
-      season:Seasonsvalue,
-      weight:ProductWeight,
-      fabricType:ProductFabricType,
-      description:ProductDescription,
-      sizesTable:sizesTable
+    const product = {
+      name: ProductName,
+      price: ProductPrice,
+      gender: ProductGender,
+      season: Seasonsvalue,
+      weight: ProductWeight,
+      fabricType: ProductFabricType,
+      description: ProductDescription,
+      sizesTable: sizesTable
     }
+
+    const fileInput = document.getElementById('Upload2DImages');
+    // console.log('fielInputs are:',fileInputs);
+    const files = fileInput.files;
+    console.log('files are :', files);
+    
+    const formData = new FormData();
+    formData.append('name',ProductName);
+    formData.append('price',ProductPrice);
+    formData.append('gender',ProductGender);
+    formData.append('season',Seasonsvalue);
+    formData.append('weight',ProductWeight);
+    formData.append('fabricType',ProductFabricType);
+    formData.append('description',ProductDescription);
+    formData.append('sizesTable',sizesTable);
+
+
+    for (let i = 0; i < files.length; i++) {
+      formData.append('product2DImages[]', files[i]);
+    }
+    console.log('form data is',formData);
+    console.log('form data is',formData.get('name'));
+    console.log('form data is',formData.get('product2DImages[]'));
     // saving product to db
     try {
       const url="http://localhost:8081/api/products";
-      const response=await axios.post(url,product);
+      const response=await axios.post(url,formData);
       console.log(response);
     } catch (error) {
       console.log('error',error);
@@ -487,7 +510,7 @@ export default function Products() {
 
                           </div>
                           <div className='col'>
-                            <input type="file" multiple id="Upload2DImages" className='ImageFileUpload'
+                            <input type="file" multiple name='product2DImages' id="Upload2DImages" className='ImageFileUpload'
                               onChange={Upload2DImages}
                             />
                             <button className='btn UploadImagesButton d-flex ms-auto' onClick={() =>
