@@ -26,8 +26,12 @@ router.post('/',upload.array('product2DImages[]',5),async(req,res)=>{
     const productTwoDImages=req.files.map(file=> file.path);
     console.log('all images path',productTwoDImages);
 
+    const temp=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']);
+    console.log('temp',temp);
+    temp['productTwoDImages']=productTwoDImages;
+
     // const productObj=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable'],productTwoDImages
-    const product=new Product(_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']),productTwoDImages);
+    const product=new Product(temp);
 
     console.log('product after request is',product);
     try {
