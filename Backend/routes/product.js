@@ -10,6 +10,7 @@ const path=require('path');
 
 const fileStorageEngine=multer.diskStorage({
     destination:(req,file,cb)=>{
+        console.log('into fileStarage Engine destination folder');
         cb(null,path.join(__dirname, '/productImages/'));
     },
     filename:(req,file,cb)=>{
@@ -17,11 +18,23 @@ const fileStorageEngine=multer.diskStorage({
         cb(null,uniqueName);
     }
 })
+const fileStorageEngine2=multer.diskStorage({
+    destination:(req,file,cb)=>{
+        console.log('into fileStarage Engine 2 destination folder');
+        cb(null,path.join(__dirname, '/thumbnailImages/'));
+    },
+    filename:(req,file,cb)=>{
+        const uniqueName=file.originalname
+        cb(null,uniqueName);
+    }
+})
 const upload=multer({storage:fileStorageEngine});
+const upload2=multer({storage:fileStorageEngine2});
 
-router.post('/',upload.array('product2DImages[]',5),async(req,res)=>{
+router.post('/',upload.array('product2DImages[]'),async(req,res)=>{
 
-    console.log(req.files);
+    console.log('req.files',req.files);
+    console.log('req.file',req.file);
     
     const productTwoDImages=req.files.map(file=> file.path);
     console.log('all images path',productTwoDImages);

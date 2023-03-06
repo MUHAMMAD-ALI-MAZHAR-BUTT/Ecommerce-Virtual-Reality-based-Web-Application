@@ -48,6 +48,10 @@ const productSchema=new mongoose.Schema({
         type:[String],
         required:true,
     },
+    // thumbnailImg:{
+    //     type:String,
+    //     required:true,
+    // },
 });
 
 const Product=mongoose.model("Product",productSchema);

@@ -200,10 +200,14 @@ export default function Products() {
       sizesTable: sizesTable
     }
 
+
+    // capturing images 
+    const thumbnailImg=document.getElementById('ThumbnailButton').files[0];
     const fileInput = document.getElementById('Upload2DImages');
     // console.log('fielInputs are:',fileInputs);
     const files = fileInput.files;
     console.log('files are :', files);
+    // console.log('thumbnail image is:',thumbnailImg.files[0]);
     
     const formData = new FormData();
     formData.append('name',ProductName);
@@ -214,14 +218,12 @@ export default function Products() {
     formData.append('fabricType',ProductFabricType);
     formData.append('description',ProductDescription);
     formData.append('sizesTable',sizesTable);
-
-
     for (let i = 0; i < files.length; i++) {
       formData.append('product2DImages[]', files[i]);
     }
-    console.log('form data is',formData);
-    console.log('form data is',formData.get('name'));
-    console.log('form data is',formData.get('product2DImages[]'));
+    formData.append('thumbnailImg',thumbnailImg);
+    formData.get('forData thumbnail img',thumbnailImg)
+ 
     // saving product to db
     try {
       const url="http://localhost:8081/api/products";
