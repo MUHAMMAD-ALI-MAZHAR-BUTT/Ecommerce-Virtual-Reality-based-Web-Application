@@ -8,41 +8,40 @@ const path=require('path');
 // const path=require('./productImages')
 
 
+
 const fileStorageEngine=multer.diskStorage({
     destination:(req,file,cb)=>{
+        console.log('file name is:',file.filename);
         console.log('into fileStarage Engine destination folder');
-        cb(null,path.join(__dirname, '/productImages/'));
+        cb(null,path.join(__dirname, '../uploads/'));
     },
     filename:(req,file,cb)=>{
         const uniqueName=file.originalname
         cb(null,uniqueName);
     }
 })
-const fileStorageEngine2=multer.diskStorage({
-    destination:(req,file,cb)=>{
-        console.log('into fileStarage Engine 2 destination folder');
-        cb(null,path.join(__dirname, '/thumbnailImages/'));
-    },
-    filename:(req,file,cb)=>{
-        const uniqueName=file.originalname
-        cb(null,uniqueName);
-    }
-})
-const upload=multer({storage:fileStorageEngine});
-const upload2=multer({storage:fileStorageEngine2});
 
-router.post('/',upload.array('product2DImages[]'),async(req,res)=>{
+
+const upload=multer({storage:fileStorageEngine});
+
+
+
+router.post('/',upload.fields([{ name: 'thumbnailImg', maxCount: 1 }, { name: 'product2DImages[]', maxCount: 1000}]),async(req,res)=>{
 
     console.log('req.files',req.files);
-    console.log('req.file',req.file);
+    // console.log('req.file',req.file);
     
-    const productTwoDImages=req.files.map(file=> file.path);
-    console.log('all images path',productTwoDImages);
+    const productTwoDImages=req.files['product2DImages[]'].map(file=> file.path);
+    console.log('all 2D images path',productTwoDImages);
+    const thumbnailImg=req.files['thumbnailImg'].map(file=>file.path);
+    console.log('thumbnail img path',thumbnailImg)
 
     const temp=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']);
     console.log('temp',temp);
     temp['productTwoDImages']=productTwoDImages;
+    temp['thumbnailImg']=thumbnailImg[0];
 
+    
     // const productObj=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable'],productTwoDImages
     const product=new Product(temp);
 
