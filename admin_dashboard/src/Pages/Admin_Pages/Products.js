@@ -75,6 +75,7 @@ export default function Products() {
     { label: 'Fall', value: 'Fall' }
   ]
   var Two2Selectedimages = [];
+  var Three3Selectedimages = [];
   function Upload2DImages() {
     var Two_D_images = document.getElementById("Upload2DImages").files;
     for (let i = 0; i < Two_D_images.length; i++) {
@@ -86,6 +87,18 @@ export default function Products() {
     }
     // Now show images
     showImages();
+  }
+  function Upload3DImages() {
+    var Three_D_images = document.getElementById("Upload3DImages").files;
+    for (let i = 0; i < Three_D_images.length; i++) {
+      Three3Selectedimages.push({
+        "name": Three_D_images[i].name,
+        "url": URL.createObjectURL(Three_D_images[i]),
+        "file": Three_D_images[i]
+      });
+    }
+    // Now show images
+    show3DImages();
   }
   var ThumbnailImagecontainer = [];
   function ThumbnailPic() {
@@ -116,6 +129,17 @@ export default function Products() {
 </div>`
     })
     document.getElementById("Selected2DImages").innerHTML = imagespreview;
+  }
+  function show3DImages() {
+    var imagespreview = "";
+    Three3Selectedimages.forEach((e, i) => {
+      //   console.log(Two2Selectedimages.indexOf(e))
+      imagespreview += ` <div className="image_container d-flex justify-content-center position-relative mx-1">
+<img src=${e.url} alt="image"/>
+<span className="position-absolute CloseButton" >&times;</span>
+</div>`
+    })
+    document.getElementById("Selected3DImages").innerHTML = imagespreview;
   }
   function deleteImage(index) {
     console.log(index)
@@ -202,35 +226,50 @@ export default function Products() {
 
 
     // capturing images 
-    const thumbnailImg=document.getElementById('ThumbnailButton').files[0];
+    const thumbnailImg = document.getElementById('ThumbnailButton').files[0];
     const fileInput = document.getElementById('Upload2DImages');
+    const threeDfiles=document.getElementById('Upload3DImages');
     // console.log('fielInputs are:',fileInputs);
     const files = fileInput.files;
+    const threeDImages = threeDfiles.files;
     console.log('files are :', files);
+    console.log('three d files are :', threeDImages);
     // console.log('thumbnail image is:',thumbnailImg.files[0]);
-    
+
     const formData = new FormData();
-    formData.append('name',ProductName);
-    formData.append('price',ProductPrice);
-    formData.append('gender',ProductGender);
-    formData.append('season',Seasonsvalue);
-    formData.append('weight',ProductWeight);
-    formData.append('fabricType',ProductFabricType);
-    formData.append('description',ProductDescription);
-    formData.append('sizesTable',sizesTable);
+    formData.append('name', ProductName);
+    formData.append('price', ProductPrice);
+    formData.append('gender', ProductGender);
+    formData.append('season', Seasonsvalue);
+    formData.append('weight', ProductWeight);
+    formData.append('fabricType', ProductFabricType);
+    formData.append('description', ProductDescription);
+    formData.append('sizesTable', sizesTable);
     for (let i = 0; i < files.length; i++) {
       formData.append('product2DImages[]', files[i]);
     }
-    formData.append('thumbnailImg',thumbnailImg);
-    formData.get('forData thumbnail img',thumbnailImg)
- 
+    for (let i = 0; i < threeDImages.length; i++) {
+      formData.append('product3DImages[]', threeDImages[i]);
+    }
+    
+    formData.append('thumbnailImg', thumbnailImg);
+
+    console.log('before call to api');
+    for (const [key, value] of formData) {
+      console.log(key, value);
+    }
+
+    // debugger;
+    // formData.get('thumbnailImg');
+    // formData.get('product2DImages[]');
+
     // saving product to db
     try {
-      const url="http://localhost:8081/api/products";
-      const response=await axios.post(url,formData);
+      const url = "http://localhost:8081/api/products";
+      const response = await axios.post(url, formData);
       console.log(response);
     } catch (error) {
-      console.log('error',error);
+      console.log('error', error);
     }
 
 
@@ -524,6 +563,42 @@ export default function Products() {
                         <div className='container'>
                           <div className='row'>
                             <div className="card-body d-flex flex-wrap justify-content-start" id="Selected2DImages">
+
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 3D image upload section  */}
+                <div className='row my-1'>
+                  <div className='row'>
+                    <h4 className='text-center'>3D Images</h4>
+                  </div>
+                  <div className='row my-1'>
+                    <div className='card  px-0 mx-0'>
+                      <div className='card-header'>
+                        <div className="row">
+                          <div className='col'>
+                            <h5>3D Image Uploading</h5>
+
+                          </div>
+                          <div className='col'>
+                            <input type="file" multiple name='product3DImages' id="Upload3DImages" className='ImageFileUpload'
+                              onChange={Upload3DImages}
+                            />
+                            <button className='btn UploadImagesButton d-flex ms-auto' onClick={() =>
+                              document.getElementById("Upload3DImages").click()}>Upload Images</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='card-body'>
+                        <div className='container'>
+                          <div className='row'>
+                            <div className="card-body d-flex flex-wrap justify-content-start" id="Selected3DImages">
 
 
                             </div>

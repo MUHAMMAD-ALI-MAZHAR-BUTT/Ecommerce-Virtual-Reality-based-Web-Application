@@ -26,22 +26,25 @@ const upload=multer({storage:fileStorageEngine});
 
 
 
-router.post('/',upload.fields([{ name: 'thumbnailImg', maxCount: 1 }, { name: 'product2DImages[]', maxCount: 1000}]),async(req,res)=>{
+router.post('/',upload.fields([{ name: 'thumbnailImg', maxCount: 1 }, { name: 'product2DImages[]', maxCount: 1000},{ name: 'product3DImages[]', maxCount: 1000}]),async(req,res)=>{
 
     console.log('req.files',req.files);
     // console.log('req.file',req.file);
     
     const productTwoDImages=req.files['product2DImages[]'].map(file=> file.path);
     console.log('all 2D images path',productTwoDImages);
+    const product3DImages=req.files['product3DImages[]'].map(file=> file.path);
+    console.log('all 3D images path',product3DImages);
     const thumbnailImg=req.files['thumbnailImg'].map(file=>file.path);
     console.log('thumbnail img path',thumbnailImg)
 
     const temp=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']);
     console.log('temp',temp);
     temp['productTwoDImages']=productTwoDImages;
+    temp['product3DImages']=product3DImages;
     temp['thumbnailImg']=thumbnailImg[0];
 
-    
+
     // const productObj=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable'],productTwoDImages
     const product=new Product(temp);
 
