@@ -3,6 +3,9 @@ import "../../styles/Admin_Section/AdminPages/Products.css"
 import MultiSelect from 'react-multiple-select-dropdown-lite'
 import 'react-multiple-select-dropdown-lite/dist/index.css'
 import axios from 'axios';
+import ProductsList from './ProductsList';
+import CustomTable from './CustomTable';
+import TestProductList from './TestProductList';
 
 
 export default function Products() {
@@ -289,6 +292,10 @@ export default function Products() {
             </div>
           </div>
         </div>
+        {/* <ProductsList /> */}
+        <CustomTable />
+        {/* <TestProductList /> */}
+
       </div>
 
       {/* Add Product Section Modal */}
