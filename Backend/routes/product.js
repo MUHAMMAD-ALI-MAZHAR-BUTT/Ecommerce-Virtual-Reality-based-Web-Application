@@ -11,13 +11,16 @@ const path=require('path');
 
 const fileStorageEngine=multer.diskStorage({
     destination:(req,file,cb)=>{
-        console.log('file name is:',file.filename);
+
+        console.log('file name is:',file);
         console.log('into fileStarage Engine destination folder');
-        cb(null,path.join(__dirname, '../uploads/'));
+        cb(null,path.join(__dirname, '../Public/uploads'));
+        // cb(null, '../uploads');
     },
     filename:(req,file,cb)=>{
-        const uniqueName=file.originalname
-        cb(null,uniqueName);
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        const uniqueName=file.fieldname
+        cb(null,uniqueName + '-' + uniqueSuffix + '.'+ file.originalname.split('.').pop());
     }
 })
 
@@ -31,18 +34,21 @@ router.post('/',upload.fields([{ name: 'thumbnailImg', maxCount: 1 }, { name: 'p
     console.log('req.files',req.files);
     // console.log('req.file',req.file);
     
-    const productTwoDImages=req.files['product2DImages[]'].map(file=> file.path);
+    const productTwoDImages=req.files['product2DImages[]'].map(file=> file.filename);
     console.log('all 2D images path',productTwoDImages);
-    const product3DImages=req.files['product3DImages[]'].map(file=> file.path);
+    const product3DImages=req.files['product3DImages[]'].map(file=> file.filename);
     console.log('all 3D images path',product3DImages);
-    const thumbnailImg=req.files['thumbnailImg'].map(file=>file.path);
+    const thumbnailImg=req.files['thumbnailImg'].map(file=>file.filename);
     console.log('thumbnail img path',thumbnailImg)
+    // return;
+
 
     const temp=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']);
     console.log('temp',temp);
     temp['productTwoDImages']=productTwoDImages;
     temp['product3DImages']=product3DImages;
     temp['thumbnailImg']=thumbnailImg[0];
+    temp['sizesTable']=JSON.parse(temp['sizesTable']);
 
 
     // const productObj=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable'],productTwoDImages
@@ -103,28 +109,50 @@ router.delete('/:id', async (req, res) => {
 
 
 // updating product 
-router.put('/:id',upload.fields([{ name: 'thumbnailImg', maxCount: 1 }, { name: 'product2DImages[]', maxCount: 1000},{ name: 'product3DImages[]', maxCount: 1000}]),async(req,res)=>{
+router.put('/:id',upload.fields([{ name: 'newThumbnailImg', maxCount: 1 }, { name: 'newTwoDImages[]', maxCount: 1000},{ name: 'newThreeDModels[]', maxCount: 1000}]),async(req,res)=>{
     
-    const updatedProduct=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']);
-    const productTwoDImages=req.files['product2DImages[]'].map(file=> file.path);
-    console.log('all 2D images path',productTwoDImages);
-    const product3DImages=req.files['product3DImages[]'].map(file=> file.path);
-    console.log('all 3D images path',product3DImages);
-    const thumbnailImg=req.files['thumbnailImg'].map(file=>file.path);
-    console.log('thumbnail img path',thumbnailImg);
-    updatedProduct['productTwoDImages']=productTwoDImages;
-    updatedProduct['product3DImages']=product3DImages;
-    updatedProduct['thumbnailImg']=thumbnailImg[0];
+    // const updatedProduct=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable']);
+    // const productTwoDImages=req.files['product2DImages[]'].map(file=> file.path);
+    // console.log('all 2D images path',productTwoDImages);
+    // const product3DImages=req.files['product3DImages[]'].map(file=> file.path);
+    // console.log('all 3D images path',product3DImages);
+    // const thumbnailImg=req.files['thumbnailImg'].map(file=>file.path);
+    // console.log('thumbnail img path',thumbnailImg);
+    // updatedProduct['productTwoDImages']=productTwoDImages;
+    // updatedProduct['product3DImages']=product3DImages;
+    // updatedProduct['thumbnailImg']=thumbnailImg[0];
+
+    console.log('in Edit object files are ',req.files)
+    console.log('in Edit object body is ',req.body)
+
+    const temp=_.pick(req.body,['name','price','gender','season','weight','fabricType','description','sizesTable','thumbnailImg','productTwoDImages','product3DImages']);
+    temp['sizesTable']=JSON.parse(temp['sizesTable']);
+    temp['thumbnailImg']=temp['thumbnailImg']==''? req.files['newThumbnailImg'].map(img=>img.filename)[0] : temp['thumbnailImg'];
+    temp['productTwoDImages']=JSON.parse(temp['productTwoDImages']);
+    temp['product3DImages']=JSON.parse(temp['product3DImages']);
+    
+    req.files['newTwoDImages[]'] && req.files['newTwoDImages[]'].map(img=>{temp['productTwoDImages'].push(img.filename);});
+    req.files['newThreeDModels[]'] && req.files['newThreeDModels[]'].map(img=>{temp['product3DImages'].push(img.filename);});
+
+
+    console.log('in edit product temp',temp);
+
+
+
+
+
+    // return;
+
 
 
 
     const newUpdatedProduct = await Product.findByIdAndUpdate(
-        req.params.id,
-        updatedProduct,
+        {_id:req.params.id},
+        temp,
         { new: true }
       );
       if (!newUpdatedProduct) {
-        res.status(404).send("This customer does not exists");
+        res.status(404).send("This Product does not exists");
         return;
       }
       res.status(200).send(newUpdatedProduct);

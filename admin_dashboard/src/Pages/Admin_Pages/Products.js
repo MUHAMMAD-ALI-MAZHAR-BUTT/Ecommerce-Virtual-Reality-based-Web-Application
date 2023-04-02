@@ -8,6 +8,8 @@ import CustomTable from './CustomTable';
 import TestProductList from './TestProductList';
 
 
+
+
 export default function Products() {
   const [Gender, SetGender] = useState("Select Gender");
   const [extraSmallColorvalue, setExtraSmallColorvalue] = useState('');
@@ -68,6 +70,7 @@ export default function Products() {
   const [Seasonsvalue, setSeasonsvalue] = useState('')
   const handleOnSeasonInputchange = (val) => {
     console.log('season val', val);
+
     setSeasonsvalue(val);
     AddProduct();
   }
@@ -239,6 +242,7 @@ export default function Products() {
     console.log('three d files are :', threeDImages);
     // console.log('thumbnail image is:',thumbnailImg.files[0]);
 
+    sizesTable=JSON.stringify(sizesTable);
     const formData = new FormData();
     formData.append('name', ProductName);
     formData.append('price', ProductPrice);
@@ -247,7 +251,8 @@ export default function Products() {
     formData.append('weight', ProductWeight);
     formData.append('fabricType', ProductFabricType);
     formData.append('description', ProductDescription);
-    formData.append('sizesTable', sizesTable);
+    formData.append('sizesTable',sizesTable);
+    
     for (let i = 0; i < files.length; i++) {
       formData.append('product2DImages[]', files[i]);
     }
@@ -294,6 +299,7 @@ export default function Products() {
         </div>
         {/* <ProductsList /> */}
         <CustomTable />
+        <img src={Products} alt=""/>
         {/* <TestProductList /> */}
 
       </div>
