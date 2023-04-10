@@ -16,7 +16,7 @@ export default function Bespoke(props) {
       "MaterialType":"",
       "JacketColor":"",
       "JacketDescription":"",
-      "MinimumPrice":"",
+      "MinimumPrice":"80",
       "MaximumPrice":"",
       "PrefferedSize":"",
       "Waist":"",
@@ -671,13 +671,16 @@ onClick={BespokeFormSubmit}
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={ChangeRoute}></button>
       </div>
       <div className="modal-body">
-      {showmodal===1?
+      {showmodal===1 &&
       <div>Your Request has been sent to the Admin.The Admin will review your request and mail you the response.
 
         In case of any further Queries you can contact us through our mail at &nbsp;
         <div className="LinksColor">metaverse@gmail.com</div>
-      </div>:
-      <div>Your Request has not been sent to the Admin due to some issues.You can submit the request again and
+      </div>
+      }
+
+      {showmodal===0 &&
+            <div>Your Request has not been sent to the Admin due to some issues.You can submit the request again and
         if still same issue occur then contact us through our mail at &nbsp;
         <div className="LinksColor">metaverse@gmail.com</div>
       </div>}

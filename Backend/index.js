@@ -2,6 +2,7 @@ require("./DB/config")
 const express=require('express');
 const dotenv = require('dotenv');
 const Customer=require("./Models/Customers");
+const Product=require("./Models/Product");
 const Bespoke=require("./Models/Bespoke");
 const JWT=require("jsonwebtoken")
 const cors=require("cors");
@@ -64,6 +65,17 @@ app.post("/bespoke",async (request,response)=>
     else
     {
         response.sendStatus(404);
-    }
+    }s
 })
+app.get("/api/products", async (req, res) => {
+   
+    try {
+        const products=await Product.find({});
+        console.log(products);
+        res.status(200).send(products);
+    } catch (error) {
+       res.status(500).send('Server Error:'+ error)
+    }
+  });
+
 app.listen(process.env.PORT,()=>{console.log(`Server is listening on port ${process.env.PORT}`)});
