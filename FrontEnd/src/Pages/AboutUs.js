@@ -12,7 +12,7 @@ function AboutUs() {
 The <b>MetaMart</b> is an advanced website inspired
 by the meta verse concept.Currently, there exists no e-commerce system that provides a
 virtual reality-based online store with digital versions of the actual products, virtual avatars
-with different sizes, and customized positive experiences Our objective is to research metaverse 
+with different sizes, and customized hkhkhkjhkjhpositive experiences Our objective is to research metaverse 
 concepts and how real-world experiences could be created in the digital world using advanced tools 
 and technologies.  <br/> <b>Virtual reality-based E-Commerce</b> store is created that would provide a positive
 and realistic experience to the customers in the metaverse. The core technology is virtual reality.
