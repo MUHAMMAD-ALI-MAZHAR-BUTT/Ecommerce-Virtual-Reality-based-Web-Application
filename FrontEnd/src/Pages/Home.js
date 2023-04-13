@@ -12,8 +12,9 @@ export default function Home() {
   const fetchProducts = async () => {
 
     try {
-      const response = await fetch("http://localhost:5000/api/products");
+      const response = await fetch("http://localhost:8081/api/products");
       const data = await response.json();
+      console.log('in home page products',data);
       setProducts(data);
       console.log(data);
     } catch (error) {
